@@ -35,9 +35,11 @@ const playGame = () => {
       const fishFarestPoint = fishInstance.getBoundingClientRect().right;
       const finishLineCoord = finishLine.getBoundingClientRect().right;
 
+      const { offsetWidth } = fishInstance;
+
       calculateNewMargin(fishInstance);
 
-      if (fishFarestPoint > finishLineCoord) {
+      if (fishFarestPoint > finishLineCoord + offsetWidth / 4) {
         clearInterval(gameInterval);
 
         win = true;
@@ -94,6 +96,9 @@ const displayPlayAgainButton = () => {
 
 const playAgain = () => {
   currentMargin = 0;
+  Array.from(fish).forEach((f) => {
+    f.style.marginLeft = `${currentMargin}rem`;
+  });
   win = false;
   counter = 1;
   winner.removeChild(winner.childNodes[0]); //Removes the crown
