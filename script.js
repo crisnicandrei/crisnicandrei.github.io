@@ -8,17 +8,23 @@ timerCounter.classList.add("timer-image");
 let currentMargin = 0;
 let counter = 1;
 let win = false;
-const winners = [];
+let winners = [];
 let winner;
 
-const countDownInterval = setInterval(() => {
-  timerCounter.src = timerValues[counter];
-  timer.append(timerCounter);
-  counter++;
-  if (counter > 5) {
-    handleLoadingAquarium(countDownInterval);
-  }
-}, 1000);
+const countDown = () => {
+  const countDownInterval = setInterval(() => {
+    timerCounter.src = timerValues[counter];
+    timer.append(timerCounter);
+    counter++;
+    if (counter > 5) {
+      handleLoadingAquarium(countDownInterval);
+    }
+  }, 1000);
+};
+
+window.onload = () => {
+  countDown();
+};
 
 const playGame = () => {
   const gameInterval = setInterval(() => {
@@ -26,16 +32,8 @@ const playGame = () => {
       //Start fish with 0 margin so they start right at the beggining
       fishInstance.style.marginLeft = `${currentMargin}px`;
 
-      const src = fishInstance.childNodes[1].src;
-
       const fishFarestPoint = fishInstance.getBoundingClientRect().right;
-      const finishLineCoord = finishLine.getBoundingClientRect().left;
-
-      console.log({
-        fishFarestPoint,
-        finishLineCoord,
-        src,
-      });
+      const finishLineCoord = finishLine.getBoundingClientRect().right;
 
       calculateNewMargin(fishInstance);
 
@@ -49,29 +47,23 @@ const playGame = () => {
       so I always get the fish that enters the array first
       */
         winners.push(fishInstance);
-        if (win) {
-          winner = winners[0];
-          crownKing(winner);
-          displayPlayAgainButton();
-        }
       }
     });
+    if (win) {
+      winner = winners[0];
+      crownKing(winner);
+      displayPlayAgainButton();
+    }
   }, 100);
 };
 
-const crownKing = (winnerFish) => {
-  const crownImage = document.createElement("img");
-  crownImage.src = "./assets/crown.png";
-  crownImage.classList.add("crown");
-  winnerFish.insertBefore(crownImage, winnerFish.firstChild);
-};
-
 const calculateNewMargin = (fish) => {
-  let random = Math.random();
-  if (random < 0.4) {
-    currentMargin -= 20;
+  let random = Math.round(Math.random() * 100);
+  if (random < 50) {
+    currentMargin -= 10;
+  } else {
+    currentMargin += 20;
   }
-  currentMargin += 10;
   fish.style.marginLeft = `${currentMargin}px`;
 };
 
@@ -80,4 +72,24 @@ const handleLoadingAquarium = (interval) => {
   raceTrack.style.display = "block";
   clearInterval(interval);
   playGame();
+};
+
+const displayPlayAgainButton = () => {
+  const button = createPlayAgainButton();
+  raceTrack.appendChild(button);
+  button.addEventListener("click", () => {
+    raceTrack.removeChild(button);
+    playAgain();
+  });
+};
+
+const playAgain = () => {
+  currentMargin = 0;
+  win = false;
+  counter = 1;
+  winner.removeChild(winner.childNodes[0]); //Removes the crown
+  timer.style.display = "block";
+  raceTrack.style.display = "none";
+  winners = [];
+  countDown();
 };

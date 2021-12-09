@@ -4,3 +4,4 @@ const timerValues = {
   3: "./assets/one.png",
   4: "./assets/go.png",
 };
+const PLAYAGAIN = "Click here to play again";
