@@ -30,7 +30,7 @@ const playGame = () => {
   const gameInterval = setInterval(() => {
     Array.from(fish).forEach((fishInstance) => {
       //Start fish with 0 margin so they start right at the beggining
-      fishInstance.style.marginLeft = `${currentMargin}px`;
+      fishInstance.style.marginLeft = `${currentMargin}rem`;
 
       const fishFarestPoint = fishInstance.getBoundingClientRect().right;
       const finishLineCoord = finishLine.getBoundingClientRect().right;
@@ -59,12 +59,21 @@ const playGame = () => {
 
 const calculateNewMargin = (fish) => {
   let random = Math.round(Math.random() * 100);
+
   if (random < 50) {
-    currentMargin -= 10;
+    if (window.innerWidth < 500) {
+      currentMargin -= 0.3;
+    } else {
+      currentMargin -= 1;
+    }
   } else {
-    currentMargin += 20;
+    if (window.innerWidth < 500) {
+      currentMargin += 0.4;
+    } else {
+      currentMargin += 2;
+    }
   }
-  fish.style.marginLeft = `${currentMargin}px`;
+  fish.style.marginLeft = `${currentMargin}rem`;
 };
 
 const handleLoadingAquarium = (interval) => {
