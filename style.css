@@ -1,6 +1,7 @@
 html {
   font-size: 10px;
 }
+
 #timer {
   position: absolute;
   left: 40%;
@@ -9,6 +10,8 @@ html {
 }
 .race-track {
   display: none;
+  width: 100rem;
+  height: 50rem;
 }
 .timer-image {
   width: 20rem;
@@ -34,6 +37,9 @@ body {
 }
 .aquarium {
   position: relative;
+  background-image: url("./assets/frame_1.png");
+  width: 100%;
+  height: 100%;
 }
 .finish-line {
   position: absolute;
