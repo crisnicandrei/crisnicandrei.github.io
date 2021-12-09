@@ -54,23 +54,23 @@ const playGame = () => {
       crownKing(winner);
       displayPlayAgainButton();
     }
-  }, 100);
+  }, 300);
 };
 
 const calculateNewMargin = (fish) => {
   let random = Math.round(Math.random() * 100);
 
-  if (random < 50) {
+  if (random > 40) {
     if (window.innerWidth < 500) {
       currentMargin -= 0.3;
     } else {
-      currentMargin -= 1;
+      currentMargin -= 2;
     }
   } else {
     if (window.innerWidth < 500) {
       currentMargin += 0.4;
     } else {
-      currentMargin += 2;
+      currentMargin += 5;
     }
   }
   fish.style.marginLeft = `${currentMargin}rem`;
