@@ -1,0 +1,12 @@
+html {
+  font-size: 10px;
+}
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flag-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
