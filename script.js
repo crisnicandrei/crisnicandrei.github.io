@@ -64,13 +64,13 @@ const calculateNewMargin = (fish) => {
     if (window.innerWidth < 500) {
       currentMargin -= 0.3;
     } else {
-      currentMargin -= 2;
+      currentMargin -= 0.5;
     }
   } else {
     if (window.innerWidth < 500) {
       currentMargin += 0.4;
     } else {
-      currentMargin += 5;
+      currentMargin += 2.5;
     }
   }
   fish.style.marginLeft = `${currentMargin}rem`;
