@@ -1,6 +1,19 @@
 html {
   font-size: 10px;
 }
+#timer {
+  position: absolute;
+  left: 40%;
+  top: 25%;
+  z-index: 4;
+}
+.race-track {
+  display: none;
+}
+.timer-image {
+  width: 20rem;
+  height: 20rem;
+}
 body {
   display: flex;
   justify-content: center;
@@ -11,7 +24,7 @@ body {
   flex-direction: row-reverse;
 }
 .fish {
-  width: auto;
+  width: fit-content;
   display: block;
   margin-top: 3rem;
 }
@@ -29,7 +42,10 @@ body {
 }
 .crown {
   position: absolute;
-  right: 2rem;
+  right: 1rem;
   z-index: 2;
   transform: rotate(30deg);
+}
+.fish-img {
+  width: 20rem;
 }

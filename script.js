@@ -1,42 +1,47 @@
 const fish = document.getElementsByClassName("fish");
 const finishLine = document.getElementById("finish-line");
-
-let countDown = true;
-let startGame = false;
+const timer = document.getElementById("timer");
+const timerCounter = document.createElement("img");
+const raceTrack = document.querySelector(".race-track");
+timerCounter.classList.add("timer-image");
 
 let currentMargin = 0;
-let counter = 0;
+let counter = 1;
 let win = false;
 const winners = [];
 let winner;
 
-const scrollOffsets = (function () {
-  const w = window;
+const countDownInterval = setInterval(() => {
+  timerCounter.src = timerValues[counter];
+  timer.append(timerCounter);
+  counter++;
+  if (counter > 5) {
+    handleLoadingAquarium(countDownInterval);
+  }
+}, 1000);
 
-  // This works for all browsers except IE versions 8 and before
-  if (w.pageXOffset != null) return { x: w.pageXOffset, y: w.pageYOffset };
-  // For IE (or any browser) in Standards mode
-  const d = w.document;
-  if (document.compatMode == "CSS1Compat")
-    return { x: d.documentElement.scrollLeft, y: d.documentElement.scrollTop };
-  // For browsers in Quirks mode
-  return { x: d.body.scrollLeft, y: d.body.scrollTop };
-})();
-
-const finishLineOffset =
-  finishLine.getBoundingClientRect().left + scrollOffsets.x;
-
-if (startGame) {
+const playGame = () => {
   const gameInterval = setInterval(() => {
     Array.from(fish).forEach((fishInstance) => {
       //Start fish with 0 margin so they start right at the beggining
       fishInstance.style.marginLeft = `${currentMargin}px`;
 
+      const src = fishInstance.childNodes[1].src;
+
+      const fishFarestPoint = fishInstance.getBoundingClientRect().right;
+      const finishLineCoord = finishLine.getBoundingClientRect().left;
+
+      console.log({
+        fishFarestPoint,
+        finishLineCoord,
+        src,
+      });
+
       calculateNewMargin(fishInstance);
 
-      const currentLeftMargin = parseFloat(fishInstance.style["margin-left"]);
-      const { offsetWidth } = fishInstance;
-      if (currentLeftMargin + offsetWidth >= finishLine.offsetLeft) {
+      if (fishFarestPoint > finishLineCoord) {
+        clearInterval(gameInterval);
+
         win = true;
         /*
       Add all the fish that pass the finish line to an array, 
@@ -44,15 +49,15 @@ if (startGame) {
       so I always get the fish that enters the array first
       */
         winners.push(fishInstance);
+        if (win) {
+          winner = winners[0];
+          crownKing(winner);
+          displayPlayAgainButton();
+        }
       }
     });
-    if (win) {
-      clearInterval(gameInterval);
-      winner = winners[0];
-      crownKing(winner);
-    }
-  }, 500);
-}
+  }, 100);
+};
 
 const crownKing = (winnerFish) => {
   const crownImage = document.createElement("img");
@@ -63,9 +68,16 @@ const crownKing = (winnerFish) => {
 
 const calculateNewMargin = (fish) => {
   let random = Math.random();
-  if (random < 0.5) {
-    currentMargin -= 60;
+  if (random < 0.4) {
+    currentMargin -= 20;
   }
-  currentMargin += 40;
+  currentMargin += 10;
   fish.style.marginLeft = `${currentMargin}px`;
+};
+
+const handleLoadingAquarium = (interval) => {
+  timer.style.display = "none";
+  raceTrack.style.display = "block";
+  clearInterval(interval);
+  playGame();
 };
