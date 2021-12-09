@@ -10,3 +10,19 @@ body {
   display: flex;
   flex-direction: row-reverse;
 }
+.fish {
+  display: block;
+  margin-top: 3rem;
+}
+.fish-container {
+  position: absolute;
+  top: 0;
+}
+.aquarium {
+  position: relative;
+}
+.finish-line {
+  position: absolute;
+  top: 0;
+  right: 4rem;
+}
