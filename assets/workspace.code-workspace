@@ -1,0 +1,13 @@
+{
+  "folders": [
+	{
+		"name": "assets",
+		"path": "../../../../Downloads/assets"
+	},
+	{
+		"name": "fish-race",
+		"path": ".."
+	}
+],
+  "settings": {}
+}
