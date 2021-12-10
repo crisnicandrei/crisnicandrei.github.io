@@ -31,15 +31,14 @@ const playGame = () => {
     Array.from(fish).forEach((fishInstance) => {
       //Start fish with 0 margin so they start right at the beggining
       fishInstance.style.marginLeft = `${currentMargin}rem`;
+      fishInstance.style.transition = "margin-left 0.5s linear";
 
       const fishFarestPoint = fishInstance.getBoundingClientRect().right;
       const finishLineCoord = finishLine.getBoundingClientRect().right;
 
-      const { offsetWidth } = fishInstance;
-
       calculateNewMargin(fishInstance);
 
-      if (fishFarestPoint > finishLineCoord + offsetWidth / 4) {
+      if (fishFarestPoint > finishLineCoord) {
         clearInterval(gameInterval);
 
         win = true;
@@ -56,13 +55,14 @@ const playGame = () => {
       crownKing(winner);
       displayPlayAgainButton();
     }
-  }, 300);
+  }, 500);
 };
 
 const calculateNewMargin = (fish) => {
-  let random = Math.round(Math.random() * 100);
+  let random1 = Math.round(Math.random() * 100);
+  let random2 = Math.round(Math.random() * 100);
 
-  if (random > 40) {
+  if (random1 * random2 > 5000) {
     if (window.innerWidth < 500) {
       currentMargin -= 0.3;
     } else {
@@ -72,7 +72,7 @@ const calculateNewMargin = (fish) => {
     if (window.innerWidth < 500) {
       currentMargin += 0.4;
     } else {
-      currentMargin += 2.5;
+      currentMargin += 1;
     }
   }
   fish.style.marginLeft = `${currentMargin}rem`;
