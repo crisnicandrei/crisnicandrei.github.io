@@ -11,19 +11,20 @@ let win = false;
 let winners = [];
 let winner;
 
-const countDown = () => {
+const countDown = (val) => {
   const countDownInterval = setInterval(() => {
-    timerCounter.src = timerValues[counter];
+    timerCounter.src = timerValues[val];
+
     timer.append(timerCounter);
-    counter++;
-    if (counter > 5) {
+    val++;
+    if (val > 5) {
       handleLoadingAquarium(countDownInterval);
     }
   }, 1000);
 };
 
 window.onload = () => {
-  countDown();
+  countDown(counter);
 };
 
 const playGame = () => {
@@ -100,10 +101,10 @@ const playAgain = () => {
     f.style.marginLeft = `${currentMargin}rem`;
   });
   win = false;
-  counter = 1;
   winner.removeChild(winner.childNodes[0]); //Removes the crown
   timer.style.display = "block";
+  timerCounter.src = timerValues[counter];
   raceTrack.style.display = "none";
   winners = [];
-  countDown();
+  countDown(counter + 1);
 };
