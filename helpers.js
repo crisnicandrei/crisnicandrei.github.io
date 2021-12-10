@@ -10,4 +10,5 @@ const crownKing = (winnerFish) => {
   crownImage.src = "./assets/crown.png";
   crownImage.classList.add("crown");
   winnerFish.insertBefore(crownImage, winnerFish.firstChild);
+  return winnerFish;
 };

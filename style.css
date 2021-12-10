@@ -12,19 +12,16 @@ html {
 }
 .race-track {
   display: none;
-  width: 100rem;
-  height: 50rem;
+  width: 90vw;
+  height: 58vh;
 }
-@media only screen and (max-width: 600px) {
-  .race-track {
-    width: 30rem;
-  }
-}
+
 .timer-image {
   width: 20rem;
   height: 20rem;
 }
 body {
+  margin: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,28 +31,25 @@ body {
   flex-direction: row-reverse;
 }
 .fish {
-  width: fit-content;
   display: block;
   position: relative;
   z-index: 4;
   margin-top: 3rem;
 }
-.fish-container {
-  position: absolute;
-  top: 0;
-}
+
 .aquarium {
-  position: relative;
+  display: flex;
   background-image: url("./assets/frame_1.png");
   width: 100%;
   height: 100%;
 }
-.finish-line {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
+.aquarium-content {
+  width: inherit;
 }
+.aquarium-content:first-child {
+  width: inherit;
+}
+
 @media only screen and (max-width: 600px) {
   .finish-line-image {
     width: 70%;
@@ -75,8 +69,13 @@ body {
   transform: rotate(30deg);
 }
 
-.fish-img {
-  width: 20rem;
+.king {
+  text-align: center;
+}
+.king-header {
+  font-size: 5rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: gold;
 }
 @media only screen and (max-width: 600px) {
   .fish-img {
@@ -84,6 +83,7 @@ body {
     margin-top: 3.5rem;
   }
 }
+
 .play-again {
   border-radius: 50%;
   font-size: 2rem;
@@ -101,4 +101,7 @@ body {
     height: 10rem;
     font-size: 1rem;
   }
+}
+.aquarium-content {
+  display: flex;
 }
