@@ -106,11 +106,15 @@ const playAgain = () => {
     f.style.marginLeft = `${currentMargin}%`;
   });
   win = false;
+  //Remove the king display
   const king = document.querySelector(".king");
-  console.log(king);
   raceTrack.removeChild(king); //Removes the winner from the screen
+
+  //Reappear timer
   timer.style.display = "block";
   timerCounter.src = timerValues[counter];
+
+  //Hide racetrack, reset winners array and restart the counter
   raceTrack.style.display = "none";
   winners = [];
   countDown(counter + 1);
