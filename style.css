@@ -36,6 +36,8 @@ body {
 .fish {
   width: fit-content;
   display: block;
+  position: relative;
+  z-index: 4;
   margin-top: 3rem;
 }
 .fish-container {
