@@ -5,11 +5,7 @@ html {
 #timer {
   margin-top: 30rem;
 }
-@media only screen and (max-width: 600px) {
-  #timer {
-    margin-top: 10rem;
-  }
-}
+
 .race-track {
   display: none;
   width: 60vw;
@@ -38,26 +34,11 @@ body {
   margin-bottom: 7%;
   width: 15%;
 }
-@media screen and (max-width: 1100px) {
-  .fish {
-    margin-bottom: 20%;
-  }
-}
+
 .king {
   position: absolute;
   left: 45%;
   top: 33%;
-}
-@media screen and (max-width: 600px) {
-  .king {
-    left: 33%;
-  }
-}
-@media screen and (max-width: 800px) {
-  .fish {
-    margin-bottom: 15%;
-    width: 50%;
-  }
 }
 
 .aquarium {
@@ -77,17 +58,6 @@ body {
   height: 100%;
 }
 
-@media only screen and (max-width: 600px) {
-  .finish-line-image {
-    width: 70%;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .flag {
-    width: 20%;
-  }
-}
-
 .crown {
   position: absolute;
   right: 1rem;
@@ -97,18 +67,14 @@ body {
 
 .king {
   text-align: center;
+  width: 20%;
 }
 .king-header {
   font-size: 5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   color: gold;
 }
-@media only screen and (max-width: 600px) {
-  .fish-img {
-    width: 10rem;
-    margin-top: 3.5rem;
-  }
-}
+
 .fish-img {
   width: 100%;
 }
@@ -123,13 +89,56 @@ body {
   color: white;
   font-family: Arial, Helvetica, sans-serif;
 }
-@media only screen and (max-width: 600px) {
+
+.aquarium-content {
+  display: flex;
+}
+
+/* Add classes for breakpoints so i do not repeat the select media query */
+
+@media screen and (max-width: 1400px) {
+  .fish {
+    margin-bottom: 9%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .fish {
+    margin-bottom: 20%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .fish {
+    margin-bottom: 15%;
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .king {
+    left: 33%;
+    top: 20%;
+  }
+  .king-header {
+    font-size: 3rem;
+  }
   .play-again {
     width: 10rem;
     height: 10rem;
     font-size: 1rem;
   }
-}
-.aquarium-content {
-  display: flex;
+  .fish-img {
+    width: 10rem;
+    margin-top: 3.5rem;
+  }
+  .flag {
+    width: 20%;
+  }
+  .finish-line-image {
+    width: 70%;
+  }
+  #timer {
+    margin-top: 10rem;
+  }
 }
