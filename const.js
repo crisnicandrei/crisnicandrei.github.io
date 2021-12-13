@@ -5,3 +5,4 @@ const timerValues = {
   4: "./assets/go.png",
 };
 const PLAYAGAIN = "Click here to play again";
+const WINNER = "WINNER 🥇🏆";

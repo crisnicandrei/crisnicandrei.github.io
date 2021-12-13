@@ -122,7 +122,7 @@ const playAgain = () => {
 const displayKing = (winner) => {
   const heading = document.createElement("h2");
   heading.classList.add("king-header");
-  heading.innerText = "Winner";
+  heading.innerText = WINNER;
   let kingClone = winner.cloneNode(true);
 
   kingClone = crownKing(kingClone);
