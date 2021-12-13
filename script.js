@@ -131,9 +131,7 @@ const displayKing = (winner) => {
   kingClone.classList.remove("fish");
 
   kingClone.insertBefore(heading, kingClone.firstChild);
-  kingClone.style.position = "absolute";
-  kingClone.style.left = "33%";
-  kingClone.style.top = "33%";
+
   kingClone.style.marginLeft = 0;
   raceTrack.appendChild(kingClone);
 };
