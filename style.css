@@ -1,5 +1,6 @@
 html {
   font-size: 10px;
+  height: 100vh;
 }
 
 #timer {
@@ -9,7 +10,7 @@ html {
 .race-track {
   display: none;
   width: 60vw;
-  height: 58vh;
+  height: 50%;
 }
 
 .timer-image {
@@ -17,10 +18,11 @@ html {
   height: 20rem;
 }
 body {
+  min-height: 100%;
   margin: 2rem;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 .flag-container {
   display: flex;
@@ -30,7 +32,7 @@ body {
   display: block;
   position: relative;
   z-index: 4;
-  margin-top: 4%;
+  margin-top: 5%;
   margin-bottom: 7%;
   width: 15%;
 }
