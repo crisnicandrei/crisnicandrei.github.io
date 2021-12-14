@@ -120,6 +120,12 @@ body {
     left: 33%;
     top: 20%;
   }
+  .fish {
+    margin-bottom: 13%;
+  }
+  .race-track {
+    width: 80vw;
+  }
   .king-header {
     font-size: 3rem;
   }
