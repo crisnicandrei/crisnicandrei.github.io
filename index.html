@@ -8,37 +8,54 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <div id="timer"></div>
-    <div class="race-track">
-      <div class="flag-container">
-        <img class="flag" src="./assets/flags.png" />
-      </div>
-      <div class="aquarium">
-        <div class="aquarium-content">
-          <div style="width: inherit">
-            <div class="fish-container">
-              <div class="fish">
-                <img class="fish-img" id="fish1" src="./assets/fish1.png" />
-              </div>
-              <div class="fish">
-                <img class="fish-img" id="fish2" src="./assets/fish2.png" />
-              </div>
-              <div class="fish">
-                <img class="fish-img" id="fish3" src="./assets/fish3.png" />
-              </div>
-              <div class="fish">
-                <img class="fish-img" id="fish4" src="./assets/fish4.png" />
+    <div class="body">
+      <div id="timer"></div>
+      <div class="race-track">
+        <div class="flag-container">
+          <img class="flag" src="./assets/flags.png" />
+        </div>
+        <div class="aquarium">
+          <div class="aquarium-content">
+            <div style="width: inherit">
+              <div class="fish-container">
+                <div class="fish">
+                  <img class="fish-img" id="fish1" src="./assets/fish1.png" />
+                </div>
+                <div class="fish">
+                  <img class="fish-img" id="fish2" src="./assets/fish2.png" />
+                </div>
+                <div class="fish">
+                  <img class="fish-img" id="fish3" src="./assets/fish3.png" />
+                </div>
+                <div class="fish">
+                  <img class="fish-img" id="fish4" src="./assets/fish4.png" />
+                </div>
               </div>
             </div>
-          </div>
-          <div id="finish-line" class="finish-line">
-            <img class="finish-line-image" src="./assets/finish.png" />
+            <div id="finish-line" class="finish-line">
+              <img class="finish-line-image" src="./assets/finish.png" />
+            </div>
           </div>
         </div>
+        <div class="flag-container">
+          <img class="flag" src="./assets/flags.png" />
+        </div>
       </div>
-      <div class="flag-container">
-        <img class="flag" src="./assets/flags.png" />
+    </div>
+    <div class="voting-section">
+      <div class="fish-section">
+        <img class="contestant-image" id="fish1" src="./assets/fish1.png" />
       </div>
+      <div class="fish-section">
+        <img class="contestant-image" id="fish2" src="./assets/fish2.png" />
+      </div>
+      <div class="fish-section">
+        <img class="contestant-image" id="fish3" src="./assets/fish3.png" />
+      </div>
+      <div class="fish-section">
+        <img class="contestant-image" id="fish4" src="./assets/fish4.png" />
+      </div>
+      <p class="score-p"><b>Score: </b> <span id="score"></span></p>
     </div>
     <script src="./helpers.js"></script>
     <script src="./const.js"></script>
