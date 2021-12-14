@@ -12,3 +12,6 @@ const crownKing = (winnerFish) => {
   winnerFish.insertBefore(crownImage, winnerFish.firstChild);
   return winnerFish;
 };
+const remove = (element) => {
+  element.removeChild(element.childNodes[element.childNodes.length - 1]);
+};

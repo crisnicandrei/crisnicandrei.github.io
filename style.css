@@ -20,9 +20,12 @@ html {
 body {
   min-height: 100%;
   margin: 2rem;
+}
+.body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  height: inherit;
 }
 .flag-container {
   display: flex;
@@ -98,6 +101,26 @@ body {
   display: flex;
 }
 
+.voting-section {
+  width: 80%;
+  background-color: lightgray;
+  padding: 2rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 2%;
+}
+.fish-section {
+  width: 15%;
+}
+.contestant-image {
+  width: 100%;
+  cursor: pointer;
+}
+.score-p {
+  font-size: 2rem;
+}
+
 /* Add classes for breakpoints so i do not repeat the select media query */
 
 @media screen and (max-width: 1400px) {
@@ -162,6 +185,9 @@ body {
     height: 100%;
   }
   body {
+    height: inherit;
+  }
+  .body {
     height: inherit;
   }
   #timer {

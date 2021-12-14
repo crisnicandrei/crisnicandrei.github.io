@@ -4,6 +4,12 @@ const finishLine = document.getElementById("finish-line");
 const timer = document.getElementById("timer");
 const timerCounter = document.createElement("img");
 const raceTrack = document.querySelector(".race-track");
+const votingSection = document.getElementsByClassName("fish-section");
+const scoreDisplay = document.getElementById("score");
+let voted;
+const votedText = document.createElement("p");
+votedText.classList.add("voted");
+votedText.innerText = "VOTED";
 
 timerCounter.classList.add("timer-image");
 
@@ -12,6 +18,8 @@ let counter = 1;
 let win = false;
 let winners = [];
 let winner;
+let score = 0;
+let notVoted = false;
 
 const countDown = (val) => {
   const countDownInterval = setInterval(() => {
@@ -130,6 +138,19 @@ const displayKing = (winner) => {
 
   kingClone = crownKing(kingClone);
 
+  //Get the image of the winner fish and the voted one
+  if (notVoted) {
+    const kingCloneImage = kingClone.childNodes[2].src;
+    const votedImage = voted.childNodes[1].src;
+
+    if (votedImage && votedImage === kingCloneImage) {
+      score += 10;
+    } else {
+      score -= 10;
+    }
+    scoreDisplay.innerText = score;
+  }
+
   kingClone.classList.add("king");
   kingClone.classList.remove("fish");
 
@@ -140,3 +161,14 @@ const displayKing = (winner) => {
   kingClone.style.marginLeft = 0;
   raceTrack.appendChild(kingClone);
 };
+
+Array.from(votingSection).forEach((section) => {
+  section.addEventListener("click", (e) => {
+    if (voted) {
+      remove(voted);
+    }
+    section.append(votedText);
+    voted = section;
+    notVoted = true;
+  });
+});
