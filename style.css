@@ -39,7 +39,7 @@ body {
 
 .king {
   position: absolute;
-  left: 45%;
+  left: 40%;
   top: 33%;
 }
 
@@ -70,6 +70,7 @@ body {
 .king {
   text-align: center;
   width: 20%;
+  top: 10%;
 }
 .king-header {
   font-size: 5rem;
@@ -90,6 +91,7 @@ body {
   background-color: #001f3f;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
+  cursor: pointer;
 }
 
 .aquarium-content {
@@ -110,7 +112,7 @@ body {
     margin-top: 15%;
   }
   .king {
-    left: 33%;
+    left: 40%;
     top: 20%;
   }
 }
@@ -150,6 +152,10 @@ body {
   #timer {
     margin-top: 10rem;
   }
+  .crown {
+    left: 6rem;
+    bottom: 4rem;
+  }
 }
 @media (max-width: 1100px) and (orientation: landscape) {
   html {
@@ -177,7 +183,8 @@ body {
     font-size: 3rem;
   }
   .crown {
-    top: 10.5rem;
+    top: 15rem;
+    width: 30%;
   }
   .flag {
     width: 10%;

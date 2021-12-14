@@ -121,7 +121,10 @@ const playAgain = () => {
 };
 const displayKing = (winner) => {
   const heading = document.createElement("h2");
+  const prize = document.createElement("h3");
   heading.classList.add("king-header");
+  prize.classList.add("king-header");
+  prize.innerText = PRIZE;
   heading.innerText = WINNER;
   let kingClone = winner.cloneNode(true);
 
@@ -129,6 +132,8 @@ const displayKing = (winner) => {
 
   kingClone.classList.add("king");
   kingClone.classList.remove("fish");
+
+  kingClone.insertBefore(prize, kingClone.firstChild);
 
   kingClone.insertBefore(heading, kingClone.firstChild);
 
