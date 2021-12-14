@@ -20,6 +20,7 @@ let winners = [];
 let winner;
 let score = 0;
 let notVoted = false;
+let shouldHaveListener = true;
 
 const countDown = (val) => {
   const countDownInterval = setInterval(() => {
@@ -38,6 +39,7 @@ window.onload = () => {
 };
 
 const playGame = () => {
+  shouldHaveListener = false;
   const gameInterval = setInterval(() => {
     Array.from(fish).forEach((fishInstance) => {
       //Start fish with 0 margin so they start right at the beggining
@@ -130,6 +132,7 @@ const playAgain = () => {
     voted = undefined;
     notVoted = false;
   }
+  shouldHaveListener = true;
   countDown(counter + 1);
 };
 const displayKing = (winner) => {
@@ -169,11 +172,13 @@ const displayKing = (winner) => {
 
 Array.from(votingSection).forEach((section) => {
   section.addEventListener("click", (e) => {
-    if (voted) {
-      remove(voted);
+    if (shouldHaveListener) {
+      if (voted) {
+        remove(voted);
+      }
+      section.append(votedText);
+      voted = section;
+      notVoted = true;
     }
-    section.append(votedText);
-    voted = section;
-    notVoted = true;
   });
 });
