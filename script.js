@@ -125,6 +125,11 @@ const playAgain = () => {
   //Hide racetrack, reset winners array and restart the counter
   raceTrack.style.display = "none";
   winners = [];
+  if (voted) {
+    remove(voted);
+    voted = undefined;
+    notVoted = false;
+  }
   countDown(counter + 1);
 };
 const displayKing = (winner) => {
