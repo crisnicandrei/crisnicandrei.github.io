@@ -26,6 +26,7 @@ let winner;
 let score = 0;
 let notVoted = false;
 let shouldHaveListener = true;
+let date = new Date();
 
 const countDown = (val) => {
   const countDownInterval = setInterval(() => {
@@ -42,6 +43,19 @@ const countDown = (val) => {
 window.onload = () => {
   countDown(counter);
 };
+
+//Reset the local storage after a day
+(function () {
+  var lastclear = localStorage.getItem("lastclear"),
+    time_now = new Date().getTime();
+
+  // .getTime() returns milliseconds so 1000 * 60 * 60  = 1 days
+  if (time_now - lastclear > 1000 * 60 * 60) {
+    localStorage.clear();
+
+    localStorage.setItem("lastclear", time_now);
+  }
+})();
 
 const playGame = () => {
   shouldHaveListener = false;
