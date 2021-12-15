@@ -6,12 +6,17 @@ const timerCounter = document.createElement("img");
 const raceTrack = document.querySelector(".race-track");
 const votingSection = document.getElementsByClassName("fish-section");
 const scoreDisplay = document.getElementById("score");
+
 let voted;
 const votedText = document.createElement("p");
 votedText.classList.add("voted");
 votedText.innerText = "⭐️";
 
 timerCounter.classList.add("timer-image");
+
+scoreDisplay.innerText = window.localStorage.getItem("score")
+  ? window.localStorage.getItem("score")
+  : 0;
 
 let currentMargin = 0;
 let counter = 1;
@@ -152,11 +157,12 @@ const displayKing = (winner) => {
     const votedImage = voted.childNodes[1].src;
 
     if (votedImage && votedImage === kingCloneImage) {
-      score += 10;
+      score += 40;
     } else {
       score -= 10;
     }
-    scoreDisplay.innerText = score;
+    window.localStorage.setItem("score", score);
+    scoreDisplay.innerText = window.localStorage.getItem("score");
   }
 
   kingClone.classList.add("king");
