@@ -9,7 +9,7 @@ const scoreDisplay = document.getElementById("score");
 let voted;
 const votedText = document.createElement("p");
 votedText.classList.add("voted");
-votedText.innerText = "VOTED";
+votedText.innerText = "⭐️";
 
 timerCounter.classList.add("timer-image");
 
@@ -128,7 +128,7 @@ const playAgain = () => {
   raceTrack.style.display = "none";
   winners = [];
   if (voted) {
-    remove(voted);
+    realignFish(voted);
     voted = undefined;
     notVoted = false;
   }
@@ -174,9 +174,10 @@ Array.from(votingSection).forEach((section) => {
   section.addEventListener("click", (e) => {
     if (shouldHaveListener) {
       if (voted) {
-        remove(voted);
+        realignFish(voted);
       }
       section.append(votedText);
+      section.style.justifyContent = "space-between";
       voted = section;
       notVoted = true;
     }
