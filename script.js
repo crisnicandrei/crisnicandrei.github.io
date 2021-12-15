@@ -6,6 +6,7 @@ const timerCounter = document.createElement("img");
 const raceTrack = document.querySelector(".race-track");
 const votingSection = document.getElementsByClassName("fish-section");
 const scoreDisplay = document.getElementById("score");
+const startGameButton = document.getElementById("start-game");
 
 let voted;
 const votedText = document.createElement("p");
@@ -28,6 +29,9 @@ let notVoted = false;
 let shouldHaveListener = true;
 
 const countDown = (val) => {
+  startGameButton.style.display = "none";
+  timer.style.opacity = 1;
+
   const countDownInterval = setInterval(() => {
     timerCounter.src = timerValues[val];
 
@@ -39,9 +43,9 @@ const countDown = (val) => {
   }, 1000);
 };
 
-window.onload = () => {
-  countDown(counter);
-};
+// window.onload = () => {
+//   countDown(counter);
+// };
 
 const playGame = () => {
   shouldHaveListener = false;
@@ -127,7 +131,9 @@ const playAgain = () => {
 
   //Reappear timer
   timer.style.display = "block";
+  timer.style.opacity = 0;
   timerCounter.src = timerValues[counter];
+  counter = 2;
 
   //Hide racetrack, reset winners array and restart the counter
   raceTrack.style.display = "none";
@@ -138,7 +144,7 @@ const playAgain = () => {
     notVoted = false;
   }
   shouldHaveListener = true;
-  countDown(counter + 1);
+  startGameButton.style.display = "block";
 };
 const displayKing = (winner) => {
   const heading = document.createElement("h2");
@@ -188,4 +194,7 @@ Array.from(votingSection).forEach((section) => {
       notVoted = true;
     }
   });
+});
+startGameButton.addEventListener("click", () => {
+  countDown(counter);
 });

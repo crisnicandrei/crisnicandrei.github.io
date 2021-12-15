@@ -20,6 +20,7 @@ html {
 body {
   min-height: 100%;
   margin: 2rem;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .body {
   display: flex;
@@ -44,6 +45,23 @@ body {
   position: absolute;
   left: 40%;
   top: 33%;
+}
+
+.start-game-container {
+  display: block;
+  justify-content: center;
+  margin: 0 auto;
+  width: 10%;
+}
+#start-game {
+  width: 100%;
+  font-size: 2rem;
+  padding: 2rem;
+  height: 10%;
+  border-radius: 5%;
+  border: none;
+  background-color: lightcoral;
+  color: #001f3f;
 }
 
 .aquarium {
@@ -93,7 +111,6 @@ body {
   margin: 0 auto;
   background-color: #001f3f;
   color: white;
-  font-family: Arial, Helvetica, sans-serif;
   cursor: pointer;
 }
 
@@ -150,6 +167,9 @@ body {
   .fish {
     margin-bottom: 15%;
     width: 50%;
+  }
+  .start-game-container {
+    width: 40%;
   }
 }
 
@@ -245,10 +265,22 @@ body {
     margin-left: 20rem;
     margin-top: 6rem;
   }
+  .start-game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 @media (max-width: 900px) and (orientation: landscape) {
   .fish {
     margin-top: 0;
     margin-bottom: 2%;
+  }
+  .start-game-container {
+    width: 20%;
+  }
+  #start-game {
+    text-align: center;
+    height: 30%;
   }
 }
