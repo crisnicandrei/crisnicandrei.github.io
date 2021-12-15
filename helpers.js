@@ -15,3 +15,7 @@ const crownKing = (winnerFish) => {
 const remove = (element) => {
   element.removeChild(element.childNodes[element.childNodes.length - 1]);
 };
+const realignFish = (fish) => {
+  fish.style.justifyContent = "center";
+  remove(fish);
+};

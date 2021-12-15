@@ -109,6 +109,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   margin-top: 2%;
+  align-items: center;
 }
 .fish-section {
   width: 15%;
@@ -119,6 +120,11 @@ body {
 }
 .score-p {
   font-size: 2rem;
+}
+.voted {
+  font-size: 2rem;
+  text-align: center;
+  margin: 0;
 }
 
 /* Add classes for breakpoints so i do not repeat the select media query */
@@ -186,6 +192,7 @@ body {
   }
   body {
     height: inherit;
+    display: flex;
   }
   .body {
     height: inherit;
@@ -203,7 +210,8 @@ body {
   }
   .king {
     width: 10%;
-    left: 45%;
+    left: 26%;
+    top: 10%;
   }
   .king-header {
     font-size: 3rem;
@@ -219,6 +227,23 @@ body {
     width: 7rem;
     height: 7rem;
     font-size: 1rem;
+  }
+  .voting-section {
+    flex-direction: column;
+    width: 20%;
+    height: 70%;
+  }
+  .fish-section {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+  }
+  .contestant-image {
+    width: 50%;
+  }
+  #timer {
+    margin-left: 20rem;
+    margin-top: 6rem;
   }
 }
 @media (max-width: 900px) and (orientation: landscape) {
