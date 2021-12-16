@@ -19,3 +19,4 @@ const realignFish = (fish) => {
   fish.style.justifyContent = "center";
   remove(fish);
 };
+const getValueFromStore = (item) => window.localStorage.getItem(item);
