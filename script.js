@@ -99,22 +99,27 @@ const playGame = () => {
 };
 
 const calculateNewMargin = (fish) => {
-  let random1 = Math.round(Math.random() * 100);
-  let random2 = Math.round(Math.random() * 100);
+  let random = Math.round(Math.random() * 100);
+  let forward = Math.round(Math.random() * 10);
+  let backwards = Math.round(Math.random() * 10);
 
-  if (random1 * random2 > 5000) {
+  if (random > 66) {
     if (window.innerWidth < 500) {
-      currentMargin -= 3;
+      currentMargin -= backwards - 2;
     } else {
-      currentMargin -= 5;
+      currentMargin -= backwards * 2;
+    }
+    if (currentMargin < 0) {
+      currentMargin = 0;
     }
   } else {
     if (window.innerWidth < 500) {
-      currentMargin += 1;
+      currentMargin += forward - 2;
     } else {
-      currentMargin += 3;
+      currentMargin += forward;
     }
   }
+
   fish.style.marginLeft = `${currentMargin}%`;
 };
 
