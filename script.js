@@ -7,6 +7,8 @@ const raceTrack = document.querySelector(".race-track");
 const votingSection = document.getElementsByClassName("fish-section");
 const scoreDisplay = document.getElementById("score");
 const startGameButton = document.getElementById("start-game");
+const info = document.getElementById("info");
+const infoBody = document.getElementById("info-body");
 
 let voted;
 const votedText = document.createElement("p");
@@ -31,6 +33,7 @@ let date = new Date();
 
 const countDown = (val) => {
   startGameButton.style.display = "none";
+  infoBody.style.display = "none";
   timer.style.opacity = 1;
 
   const countDownInterval = setInterval(() => {
@@ -159,6 +162,7 @@ const playAgain = () => {
   }
   shouldHaveListener = true;
   startGameButton.style.display = "block";
+  infoBody.style.display = "block";
 };
 const displayKing = (winner) => {
   const heading = document.createElement("h2");
@@ -211,4 +215,11 @@ Array.from(votingSection).forEach((section) => {
 });
 startGameButton.addEventListener("click", () => {
   countDown(counter);
+});
+infoBody.addEventListener("mouseenter", () => {
+  info.innerText =
+    "You can start the game by voting for a fish then clicking the button below, or you can start it without voting if you don't feel like gambling";
+});
+infoBody.addEventListener("mouseleave", () => {
+  info.innerText = "Need help?";
 });
