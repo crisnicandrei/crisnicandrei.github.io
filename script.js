@@ -14,6 +14,7 @@ let voted;
 const votedText = document.createElement("p");
 votedText.classList.add("voted");
 votedText.innerText = "⭐️";
+let displayHelp = false;
 
 timerCounter.classList.add("timer-image");
 
@@ -221,10 +222,11 @@ Array.from(votingSection).forEach((section) => {
 startGameButton.addEventListener("click", () => {
   countDown(counter);
 });
-infoBody.addEventListener("mouseenter", () => {
-  info.innerText =
-    "You can start the game by voting for a fish then clicking the button below, or you can start it without voting if you don't feel like gambling";
-});
-infoBody.addEventListener("mouseleave", () => {
-  info.innerText = "Need help?";
+infoBody.addEventListener("click", () => {
+  displayHelp = !displayHelp;
+  let text = displayHelp
+    ? "You can start the game by voting for a fish then clicking the button below, or you can start it without voting if you don't feel like gambling"
+    : "Need help ?";
+
+  info.innerText = text;
 });
