@@ -3,6 +3,52 @@ html {
   height: 100vh;
 }
 
+.store {
+  margin: 0;
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: lightcoral;
+  text-align: center;
+  font-size: 4rem;
+  transition: all 1s ease-in-out;
+  overflow: scroll;
+  border: 1px solid black;
+}
+.list {
+  list-style-type: none;
+  margin: 0;
+}
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 1px solid #77747d;
+  background-color: #a37e86;
+  padding: 2rem;
+}
+.list-heading {
+  font-size: 3rem;
+  text-align: left;
+}
+.emoji {
+  display: inline-block;
+  margin-right: 10%;
+  cursor: pointer;
+}
+.price {
+  font-size: 2rem;
+  text-align: left;
+}
+.open {
+  width: 20%;
+  height: 70%;
+  transition: all 1s ease-in-out;
+}
+
 #timer {
   margin-top: 30rem;
 }
@@ -191,6 +237,13 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+  .store {
+    z-index: 5;
+  }
+  .open {
+    width: 100%;
+    height: 60%;
+  }
   .fish {
     margin-bottom: 15%;
     width: 30%;
@@ -206,6 +259,9 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .open {
+    height: 100%;
+  }
   .fish {
     margin-bottom: 15%;
     margin-top: 2%;
@@ -245,6 +301,10 @@ body {
   }
 }
 @media (max-width: 1100px) and (orientation: landscape) {
+  .open {
+    width: 50%;
+  }
+
   html {
     height: 100%;
   }
@@ -260,7 +320,8 @@ body {
   }
   .fish {
     margin-top: 5%;
-    margin-bottom: 14%;
+    margin-bottom: 10%;
+    width: 20%;
   }
   .aquarium {
     background-size: 100% 100%;
@@ -316,9 +377,17 @@ body {
   }
 }
 @media (max-width: 900px) and (orientation: landscape) {
+  .store {
+    z-index: 5;
+  }
+  .open {
+    width: 100%;
+    height: 100%;
+  }
   .fish {
     margin-top: 0;
     margin-bottom: 6%;
+    width: 15%;
   }
   .start-game-container {
     width: 20%;

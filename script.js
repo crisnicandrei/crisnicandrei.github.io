@@ -9,6 +9,8 @@ const scoreDisplay = document.getElementById("score");
 const startGameButton = document.getElementById("start-game");
 const info = document.getElementById("info");
 const infoBody = document.getElementById("info-body");
+const store = document.getElementById("store");
+const storeIcon = document.getElementById("store-icon");
 
 let voted;
 const votedText = document.createElement("p");
@@ -18,20 +20,26 @@ let displayHelp = false;
 
 timerCounter.classList.add("timer-image");
 
-scoreDisplay.innerText = window.localStorage.getItem("score")
-  ? window.localStorage.getItem("score")
-  : 0;
-
 let currentMargin = 0;
 let counter = 1;
 let win = false;
 let winners = [];
 let winner;
-let score = 0;
+let score = 100;
 let notVoted = false;
 let shouldHaveListener = true;
 let date = new Date();
+const shoppingCart = getValueFromStore("shoppingCart")
+  ? Array.from(getValueFromStore("shoppingCart")).filter(
+      (value) => value != ","
+    )
+  : [];
 
+scoreDisplay.innerText = getValueFromStore("score")
+  ? getValueFromStore("score")
+  : score;
+
+console.log(getValueFromStore("score"));
 const countDown = (val) => {
   startGameButton.style.display = "none";
   infoBody.style.display = "none";
@@ -48,10 +56,6 @@ const countDown = (val) => {
   }, 1000);
 };
 
-// window.onload = () => {
-//   countDown(counter);
-// };
-
 //Reset the local storage after a day
 (function () {
   var lastclear = localStorage.getItem("lastclear"),
@@ -59,7 +63,7 @@ const countDown = (val) => {
 
   // .getTime() returns milliseconds so 1000 * 60 * 60  = 1 days
   if (time_now - lastclear > 1000 * 60 * 60) {
-    localStorage.clear();
+    localStorage.removeItem("score");
 
     localStorage.setItem("lastclear", time_now);
   }
@@ -191,8 +195,7 @@ const displayKing = (winner) => {
     } else {
       score -= 10;
     }
-    window.localStorage.setItem("score", score);
-    scoreDisplay.innerText = window.localStorage.getItem("score");
+    setScoreInStore(score);
   }
 
   kingClone.classList.add("king");
@@ -219,14 +222,73 @@ Array.from(votingSection).forEach((section) => {
     }
   });
 });
+
 startGameButton.addEventListener("click", () => {
   countDown(counter);
 });
 infoBody.addEventListener("click", () => {
   displayHelp = !displayHelp;
-  let text = displayHelp
-    ? "You can start the game by voting for a fish then clicking the button below, or you can start it without voting if you don't feel like gambling"
-    : "Need help ?";
+  let text = displayHelp ? INSTRUCTION : NEEDHELP;
 
   info.innerText = text;
 });
+
+const storeItems = document.createElement("ul");
+storeItems.classList.add("list");
+STORE.forEach(({ emoji, price, name }) => {
+  const li = document.createElement("li");
+  li.classList.add("list-item");
+  const titleEl = document.createElement("h3");
+  titleEl.classList.add("list-heading");
+  titleEl.innerText = `Name: ${name}`;
+
+  const info = document.createElement("div");
+  info.classList.add("info");
+
+  const emojiEl = document.createElement("span");
+  emojiEl.innerText = emoji;
+  emojiEl.classList.add("emoji");
+
+  const priceEl = document.createElement("p");
+  priceEl.innerText = shoppingCart.includes(emoji)
+    ? "OWNED"
+    : `Price: ${price}`;
+  priceEl.classList.add("price");
+
+  info.append(titleEl, priceEl);
+
+  li.append(info, emojiEl);
+  storeItems.appendChild(li);
+});
+
+storeIcon.addEventListener("click", () => {
+  if (store.classList.contains("open")) {
+    store.classList.remove("open");
+    store.removeChild(storeItems);
+  } else {
+    store.classList.add("open");
+    store.appendChild(storeItems);
+    const listItems = document.getElementsByClassName("list-item");
+
+    Array.from(listItems).forEach((item) => {
+      item.addEventListener("click", () => {
+        const itemToBuy = item.childNodes[1].innerText;
+        const priceItemToBuy = parseFloat(
+          item.childNodes[0].childNodes[1].innerText.split(" ")[1]
+        );
+        if (!shoppingCart.includes(itemToBuy) && score >= priceItemToBuy) {
+          shoppingCart.push(itemToBuy);
+          score = score - priceItemToBuy;
+          setScoreInStore(score);
+          window.localStorage.setItem("shoppingCart", shoppingCart);
+          item.childNodes[0].childNodes[1].innerText = "OWNED";
+        }
+      });
+    });
+  }
+});
+
+const setScoreInStore = (value) => {
+  window.localStorage.setItem("score", value);
+  scoreDisplay.innerText = window.localStorage.getItem("score");
+};
