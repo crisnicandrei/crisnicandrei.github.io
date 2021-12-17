@@ -99,7 +99,7 @@ body {
   margin: 0 auto;
   width: 10%;
   position: fixed;
-  bottom: 15%;
+  bottom: 20%;
   left: 50%;
 }
 #start-game {
@@ -183,9 +183,16 @@ body {
   bottom: 0;
   left: 10%;
   margin-top: 0;
+  height: 10%;
 }
 .fish-section {
   width: 15%;
+  background-color: cornflowerblue;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100%;
 }
 .contestant-image {
   width: 100%;
@@ -203,6 +210,11 @@ body {
   text-align: center;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 1.4rem;
+}
+.contestant-name {
+  text-align: center;
+  display: block;
+  font-size: 1.5rem;
 }
 
 /* Add classes for breakpoints so i do not repeat the select media query */
@@ -233,6 +245,9 @@ body {
   .start-game-container {
     width: 30%;
     left: 40%;
+  }
+  .open {
+    width: 50%;
   }
 }
 
@@ -300,6 +315,12 @@ body {
     left: 5%;
   }
 }
+@media (max-width: 1400px) and (orientation: landscape) {
+  .open {
+    width: 50%;
+  }
+}
+
 @media (max-width: 1100px) and (orientation: landscape) {
   .open {
     width: 50%;
@@ -359,6 +380,12 @@ body {
     width: 80%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%;
+  }
+  .contestant-name {
+    margin-bottom: 5%;
   }
   .contestant-image {
     width: 50%;
