@@ -310,6 +310,7 @@ storeIcon.addEventListener("click", () => {
           item.childNodes[0].childNodes[1].innerText = "OWNED";
           populateInventory();
         }
+        handleEquipClothing();
       });
     });
   }
@@ -363,32 +364,7 @@ const populateInventory = () =>
 
 window.addEventListener("load", () => {
   populateInventory();
-  Array.from(inventoryItems).forEach((item) => {
-    item.addEventListener("click", () => {
-      const { id, innerText } = item;
-
-      if (innerText.indexOf("equipped") !== -1) return;
-
-      /*Check to see if an item has been previously selected, if yes we remove the "equipped" text 
-    then continue with appending the text to the clicked one :) */
-
-      if (selectedItems[`${id}Element`]) {
-        selectedItems[`${id}Element`].innerText =
-          selectedItems[`${id}Element`].innerText.split(" ")[0];
-      }
-
-      selectedItems[id] = innerText;
-      selectedItems[`${id}Element`] = item;
-      selectedItems[`${id}Element`].innerText = `${innerText} equipped`;
-
-      equipClothing(
-        selectedItems["hats"],
-        selectedItems["glasses"],
-        selectedItems["shirts"],
-        voted
-      );
-    });
-  });
+  handleEquipClothing();
 });
 
 const equipClothing = (hat, glasses, shirt, votedFish) => {
@@ -431,3 +407,31 @@ const equipClothing = (hat, glasses, shirt, votedFish) => {
     votedFish.append(shirtElement);
   }
 };
+
+const handleEquipClothing = () =>
+  Array.from(inventoryItems).forEach((item) => {
+    item.addEventListener("click", () => {
+      const { id, innerText } = item;
+
+      if (innerText.indexOf("equipped") !== -1) return;
+
+      /*Check to see if an item has been previously selected, if yes we remove the "equipped" text 
+    then continue with appending the text to the clicked one :) */
+
+      if (selectedItems[`${id}Element`]) {
+        selectedItems[`${id}Element`].innerText =
+          selectedItems[`${id}Element`].innerText.split(" ")[0];
+      }
+
+      selectedItems[id] = innerText;
+      selectedItems[`${id}Element`] = item;
+      selectedItems[`${id}Element`].innerText = `${innerText} equipped`;
+
+      equipClothing(
+        selectedItems["hats"],
+        selectedItems["glasses"],
+        selectedItems["shirts"],
+        voted
+      );
+    });
+  });
