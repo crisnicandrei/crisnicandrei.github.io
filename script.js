@@ -11,6 +11,9 @@ const info = document.getElementById("info");
 const infoBody = document.getElementById("info-body");
 const store = document.getElementById("store");
 const storeIcon = document.getElementById("store-icon");
+const inventory = document.getElementById("inventory");
+const inventoryIcon = document.getElementById("inventory-icon");
+const inventoryItems = document.getElementsByClassName("inventory-item");
 
 let voted;
 const votedText = document.createElement("p");
@@ -29,17 +32,28 @@ let score = 100;
 let notVoted = false;
 let shouldHaveListener = true;
 let date = new Date();
+let emptyInventory = {};
+const selectedItems = {
+  glasses: "",
+  hats: "",
+  shirts: "",
+  glassesElement: "",
+  hatsElement: "",
+  shirtsElement: "",
+};
+
+Object.entries(STORE).forEach((entry) => {
+  emptyInventory[entry[1]["category"]] = [];
+});
+
 const shoppingCart = getValueFromStore("shoppingCart")
-  ? Array.from(getValueFromStore("shoppingCart")).filter(
-      (value) => value != ","
-    )
-  : [];
+  ? JSON.parse(getValueFromStore("shoppingCart"))
+  : emptyInventory;
 
 scoreDisplay.innerText = getValueFromStore("score")
   ? getValueFromStore("score")
   : score;
 
-console.log(getValueFromStore("score"));
 const countDown = (val) => {
   startGameButton.style.display = "none";
   infoBody.style.display = "none";
@@ -219,6 +233,12 @@ Array.from(votingSection).forEach((section) => {
       section.style.justifyContent = "space-between";
       voted = section;
       notVoted = true;
+      equipClothing(
+        selectedItems["hats"],
+        selectedItems["glasses"],
+        selectedItems["shirts"],
+        voted
+      );
     }
   });
 });
@@ -235,9 +255,10 @@ infoBody.addEventListener("click", () => {
 
 const storeItems = document.createElement("ul");
 storeItems.classList.add("list");
-STORE.forEach(({ emoji, price, name }) => {
+STORE.forEach(({ emoji, price, name, category }) => {
   const li = document.createElement("li");
   li.classList.add("list-item");
+  li.id = category;
   const titleEl = document.createElement("h3");
   titleEl.classList.add("list-heading");
   titleEl.innerText = `Name: ${name}`;
@@ -250,7 +271,7 @@ STORE.forEach(({ emoji, price, name }) => {
   emojiEl.classList.add("emoji");
 
   const priceEl = document.createElement("p");
-  priceEl.innerText = shoppingCart.includes(emoji)
+  priceEl.innerText = shoppingCart[category].includes(emoji)
     ? "OWNED"
     : `Price: ${price}`;
   priceEl.classList.add("price");
@@ -273,15 +294,21 @@ storeIcon.addEventListener("click", () => {
     Array.from(listItems).forEach((item) => {
       item.addEventListener("click", () => {
         const itemToBuy = item.childNodes[1].innerText;
+        const { id } = item;
         const priceItemToBuy = parseFloat(
           item.childNodes[0].childNodes[1].innerText.split(" ")[1]
         );
-        if (!shoppingCart.includes(itemToBuy) && score >= priceItemToBuy) {
-          shoppingCart.push(itemToBuy);
+
+        if (!shoppingCart[id].includes(itemToBuy) && score >= priceItemToBuy) {
+          shoppingCart[id].push(itemToBuy);
           score = score - priceItemToBuy;
           setScoreInStore(score);
-          window.localStorage.setItem("shoppingCart", shoppingCart);
+          window.localStorage.setItem(
+            "shoppingCart",
+            JSON.stringify(shoppingCart)
+          );
           item.childNodes[0].childNodes[1].innerText = "OWNED";
+          populateInventory();
         }
       });
     });
@@ -291,4 +318,116 @@ storeIcon.addEventListener("click", () => {
 const setScoreInStore = (value) => {
   window.localStorage.setItem("score", value);
   scoreDisplay.innerText = window.localStorage.getItem("score");
+};
+
+inventoryIcon.addEventListener("click", () => {
+  if (inventory.classList.contains("open")) {
+    inventory.classList.remove("open");
+  } else {
+    inventory.classList.add("open");
+  }
+});
+Object.keys(shoppingCart).forEach((key) => {
+  const container = document.createElement("div");
+  const header = document.createElement("h3");
+  const inventoryList = document.createElement("ul");
+
+  inventoryList.id = `inventory-list-${key}`;
+
+  header.innerText = key;
+  container.append(header, inventoryList);
+  container.id = key;
+  inventory.append(container);
+});
+
+const populateInventory = () =>
+  Object.keys(shoppingCart).forEach((key) => {
+    inventory.childNodes.forEach((child) => {
+      if (child.id === key) {
+        const inventoryList = document.getElementById(`inventory-list-${key}`);
+
+        while (inventoryList.firstChild) {
+          inventoryList.removeChild(inventoryList.lastChild);
+        }
+
+        shoppingCart[key].forEach((item) => {
+          const inventoryItem = document.createElement("li");
+          inventoryItem.id = key;
+          inventoryItem.classList.add("inventory-item");
+          inventoryItem.innerText = item;
+          inventoryList.appendChild(inventoryItem);
+        });
+      }
+    });
+  });
+
+window.addEventListener("load", () => {
+  populateInventory();
+  Array.from(inventoryItems).forEach((item) => {
+    item.addEventListener("click", () => {
+      const { id, innerText } = item;
+
+      if (innerText.indexOf("equipped") !== -1) return;
+
+      /*Check to see if an item has been previously selected, if yes we remove the "equipped" text 
+    then continue with appending the text to the clicked one :) */
+
+      if (selectedItems[`${id}Element`]) {
+        selectedItems[`${id}Element`].innerText =
+          selectedItems[`${id}Element`].innerText.split(" ")[0];
+      }
+
+      selectedItems[id] = innerText;
+      selectedItems[`${id}Element`] = item;
+      selectedItems[`${id}Element`].innerText = `${innerText} equipped`;
+
+      equipClothing(
+        selectedItems["hats"],
+        selectedItems["glasses"],
+        selectedItems["shirts"],
+        voted
+      );
+    });
+  });
+});
+
+const equipClothing = (hat, glasses, shirt, votedFish) => {
+  const id = votedFish.childNodes[3].id;
+
+  if (hat) {
+    let hatElement = document.getElementById("hat-equip");
+    if (!hatElement) {
+      hatElement = document.createElement("span");
+      hatElement.id = "hat-equip";
+    }
+    hatElement.innerText = hat;
+    hatElement.classList.remove(...hatElement.classList);
+    hatElement.classList.add(`hat-equip-${id}`);
+
+    votedFish.append(hatElement);
+  }
+  if (glasses) {
+    let glassesElement = document.getElementById("glasses-equip");
+    if (!glassesElement) {
+      glassesElement = document.createElement("span");
+      glassesElement.id = "glasses-equip";
+    }
+    glassesElement.classList.remove(...glassesElement.classList);
+    glassesElement.classList.add(`glasses-equip-${id}`);
+
+    glassesElement.innerText = glasses;
+    votedFish.append(glassesElement);
+  }
+  if (shirt) {
+    let shirtElement = document.getElementById("shirt-equip");
+    if (!shirtElement) {
+      shirtElement = document.createElement("span");
+      shirtElement.id = "shirt-equip";
+    }
+    shirtElement.classList.remove(...shirtElement.classList);
+    shirtElement.classList.add(`shirt-equip-${id}`);
+
+    shirtElement.innerText = shirt;
+    votedFish.append(shirtElement);
+  }
 };
