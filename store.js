@@ -1,6 +1,5 @@
 const categories = {
   hat: "hats",
-  shirt: "shirts",
   glasses: "glasses",
 };
 const STORE = [
@@ -21,30 +20,6 @@ const STORE = [
     price: 2,
     emoji: "🧢",
     category: categories.hat,
-  },
-  {
-    name: "Shirt",
-    price: 10,
-    emoji: "👕",
-    category: categories.shirt,
-  },
-  {
-    name: "Pink Shirt",
-    price: 10,
-    emoji: "👚",
-    category: categories.shirt,
-  },
-  {
-    name: "Dress",
-    price: 10,
-    emoji: "🧥",
-    category: categories.shirt,
-  },
-  {
-    name: "White coat",
-    price: 10,
-    emoji: "🥼",
-    category: categories.shirt,
   },
   {
     name: "Glasses",

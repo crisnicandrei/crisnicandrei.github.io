@@ -42,10 +42,8 @@ let emptyInventory = {};
 const selectedItems = {
   glasses: "",
   hats: "",
-  shirts: "",
   glassesElement: "",
   hatsElement: "",
-  shirtsElement: "",
 };
 
 Object.entries(STORE).forEach((entry) => {
@@ -231,12 +229,7 @@ Array.from(votingSection).forEach((section) => {
       section.style.justifyContent = "space-between";
       voted = section;
       notVoted = true;
-      equipClothing(
-        selectedItems["hats"],
-        selectedItems["glasses"],
-        selectedItems["shirts"],
-        voted
-      );
+      equipClothing(selectedItems["hats"], selectedItems["glasses"], voted);
     }
   });
 });
@@ -365,7 +358,7 @@ window.addEventListener("load", () => {
   handleEquipClothing();
 });
 
-const equipClothing = (hat, glasses, shirt, votedFish) => {
+const equipClothing = (hat, glasses, votedFish) => {
   const id = votedFish.childNodes[3].id;
 
   if (hat) {
@@ -381,13 +374,6 @@ const equipClothing = (hat, glasses, shirt, votedFish) => {
       glassesElement = createInventoryItem(glassesElement, "glasses-equip");
     }
     dressUpFish(glassesElement, `glasses-equip-${id}`, glasses, votedFish);
-  }
-  if (shirt) {
-    let shirtElement = document.getElementById("shirt-equip");
-    if (!shirtElement) {
-      shirtElement = createInventoryItem(shirtElement, "shirt-equip");
-    }
-    dressUpFish(shirtElement, `shirt-equip-${id}`, shirt, votedFish);
   }
 };
 
@@ -410,11 +396,6 @@ const handleEquipClothing = () =>
       selectedItems[`${id}Element`] = item;
       selectedItems[`${id}Element`].innerText = `${innerText} equipped`;
 
-      equipClothing(
-        selectedItems["hats"],
-        selectedItems["glasses"],
-        selectedItems["shirts"],
-        voted
-      );
+      equipClothing(selectedItems["hats"], selectedItems["glasses"], voted);
     });
   });
