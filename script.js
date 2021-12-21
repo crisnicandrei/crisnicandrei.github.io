@@ -15,6 +15,13 @@ const inventory = document.getElementById("inventory");
 const inventoryIcon = document.getElementById("inventory-icon");
 const inventoryItems = document.getElementsByClassName("inventory-item");
 
+Array.from(fish).forEach((fishInstance, index) => {
+  //Start fish with 0 margin so they start right at the beggining
+
+  fishInstance.style.left = `0%`;
+  fishInstance.style.transition = "left 0.5s linear";
+});
+
 let voted;
 const votedText = document.createElement("p");
 votedText.classList.add("voted");
@@ -23,7 +30,6 @@ let displayHelp = false;
 
 timerCounter.classList.add("timer-image");
 
-let currentMargin = 0;
 let counter = 1;
 let win = false;
 let winners = [];
@@ -86,15 +92,15 @@ const countDown = (val) => {
 const playGame = () => {
   shouldHaveListener = false;
   const gameInterval = setInterval(() => {
-    Array.from(fish).forEach((fishInstance) => {
+    Array.from(fish).forEach((fishInstance, index) => {
       //Start fish with 0 margin so they start right at the beggining
-      fishInstance.style.marginLeft = `${currentMargin}%`;
-      fishInstance.style.transition = "margin-left 0.5s linear";
 
       const fishFarestPoint = fishInstance.getBoundingClientRect().right;
       const finishLineCoord = finishLine.getBoundingClientRect().right;
 
-      calculateNewMargin(fishInstance);
+      calculateNewMargin(fishInstance, index);
+
+      console.log(fishFarestPoint);
 
       if (fishFarestPoint > finishLineCoord) {
         clearInterval(gameInterval);
@@ -114,32 +120,25 @@ const playGame = () => {
       displayKing(winner);
       displayPlayAgainButton();
     }
-  }, 500);
+  }, 20);
 };
 
-const calculateNewMargin = (fish) => {
-  let random = Math.round(Math.random() * 100);
-  let forward = Math.round(Math.random() * 10);
-  let backwards = Math.round(Math.random() * 10);
-
-  if (random > 66) {
-    if (window.innerWidth < 500) {
-      currentMargin -= backwards - 2;
-    } else {
-      currentMargin -= backwards * 2;
-    }
+const calculateNewMargin = (fish, index) => {
+  let currentMargin = parseFloat(fish.style.left);
+  let random = Math.floor(Math.random() * 100);
+  let forward = Math.floor(Math.random() * 2);
+  if (random < 40) {
+    currentMargin -= forward;
     if (currentMargin < 0) {
       currentMargin = 0;
     }
   } else {
-    if (window.innerWidth < 500) {
-      currentMargin += forward - 2;
-    } else {
-      currentMargin += forward;
-    }
+    currentMargin += forward;
+  }
+  if (index === 0) {
   }
 
-  fish.style.marginLeft = `${currentMargin}%`;
+  fish.style.left = `${currentMargin}%`;
 };
 
 const handleLoadingAquarium = (interval) => {
@@ -161,9 +160,8 @@ const displayPlayAgainButton = (winner) => {
 };
 
 const playAgain = () => {
-  currentMargin = 0;
   Array.from(fish).forEach((f) => {
-    f.style.marginLeft = `${currentMargin}%`;
+    f.style.left = `0%`;
   });
   win = false;
   //Remove the king display
@@ -219,7 +217,7 @@ const displayKing = (winner) => {
 
   kingClone.insertBefore(heading, kingClone.firstChild);
 
-  kingClone.style.marginLeft = 0;
+  kingClone.style = "none";
   raceTrack.appendChild(kingClone);
 };
 
@@ -420,5 +418,3 @@ const handleEquipClothing = () =>
       );
     });
   });
-
-
