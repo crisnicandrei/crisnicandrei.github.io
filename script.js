@@ -373,38 +373,23 @@ const equipClothing = (hat, glasses, shirt, votedFish) => {
   if (hat) {
     let hatElement = document.getElementById("hat-equip");
     if (!hatElement) {
-      hatElement = document.createElement("span");
-      hatElement.id = "hat-equip";
+      hatElement = createInventoryItem(hatElement, "hat-equip");
     }
-    hatElement.innerText = hat;
-    hatElement.classList.remove(...hatElement.classList);
-    hatElement.classList.add(`hat-equip-${id}`);
-
-    votedFish.append(hatElement);
+    dressUpFish(hatElement, `hat-equip-${id}`, hat, votedFish);
   }
   if (glasses) {
     let glassesElement = document.getElementById("glasses-equip");
     if (!glassesElement) {
-      glassesElement = document.createElement("span");
-      glassesElement.id = "glasses-equip";
+      glassesElement = createInventoryItem(glassesElement, "glasses-equip");
     }
-    glassesElement.classList.remove(...glassesElement.classList);
-    glassesElement.classList.add(`glasses-equip-${id}`);
-
-    glassesElement.innerText = glasses;
-    votedFish.append(glassesElement);
+    dressUpFish(glassesElement, `glasses-equip-${id}`, glasses, votedFish);
   }
   if (shirt) {
     let shirtElement = document.getElementById("shirt-equip");
     if (!shirtElement) {
-      shirtElement = document.createElement("span");
-      shirtElement.id = "shirt-equip";
+      shirtElement = createInventoryItem(shirtElement, "shirt-equip");
     }
-    shirtElement.classList.remove(...shirtElement.classList);
-    shirtElement.classList.add(`shirt-equip-${id}`);
-
-    shirtElement.innerText = shirt;
-    votedFish.append(shirtElement);
+    dressUpFish(shirtElement, `shirt-equip-${id}`, shirt, votedFish);
   }
 };
 
@@ -435,3 +420,5 @@ const handleEquipClothing = () =>
       );
     });
   });
+
+

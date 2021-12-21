@@ -20,3 +20,17 @@ const realignFish = (fish) => {
   remove(fish);
 };
 const getValueFromStore = (item) => window.localStorage.getItem(item);
+
+const createInventoryItem = (element, id) => {
+  element = document.createElement("span");
+  element.id = id;
+  return element;
+};
+
+const dressUpFish = (element, classToAdd, clothingItem, fishToAppendTo) => {
+  element.classList.remove(...element.classList);
+  element.classList.add(classToAdd);
+
+  element.innerText = clothingItem;
+  fishToAppendTo.append(element);
+};
