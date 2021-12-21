@@ -13,7 +13,12 @@ const crownKing = (winnerFish) => {
   return winnerFish;
 };
 const remove = (element) => {
-  element.removeChild(element.childNodes[element.childNodes.length - 1]);
+  if (element.childNodes.length === 4) {
+    element.removeChild(element.childNodes[element.childNodes.length - 1]);
+  } else if (element.childNodes.length > 4) {
+    element.removeChild(element.childNodes[element.childNodes.length - 2]);
+    element.removeChild(element.childNodes[element.childNodes.length - 1]);
+  }
 };
 const realignFish = (fish) => {
   fish.style.justifyContent = "center";

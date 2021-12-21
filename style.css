@@ -105,6 +105,12 @@ body {
   margin-bottom: 7%;
   width: 15%;
 }
+.racing-glasses {
+  top: 30% !important;
+}
+.racing-hat {
+  top: 0% !important;
+}
 
 .king {
   position: absolute;

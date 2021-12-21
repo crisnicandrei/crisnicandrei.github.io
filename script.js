@@ -89,16 +89,37 @@ const countDown = (val) => {
 
 const playGame = () => {
   shouldHaveListener = false;
+  let votedGlasses;
+  let votedHat;
+  const votedDressedupFish = voted ? voted.childNodes[3].src : null;
+  if (document.getElementById("glasses-equip")) {
+    votedGlasses = document.getElementById("glasses-equip").cloneNode(true);
+    votedGlasses.classList.add("racing-glasses");
+  }
+  if (document.getElementById("hat-equip")) {
+    votedHat = document.getElementById("hat-equip").cloneNode(true);
+    votedHat.classList.add("racing-hat");
+  }
+  console.log(votedGlasses, votedHat);
+
   const gameInterval = setInterval(() => {
     Array.from(fish).forEach((fishInstance, index) => {
       //Start fish with 0 margin so they start right at the beggining
+
+      if (votedDressedupFish === fishInstance.childNodes[1].src) {
+        if (votedGlasses) {
+          fishInstance.append(votedGlasses);
+        }
+        if (votedHat) {
+          fishInstance.append(votedHat);
+        }
+        //Dress up the fish on the race track
+      }
 
       const fishFarestPoint = fishInstance.getBoundingClientRect().right;
       const finishLineCoord = finishLine.getBoundingClientRect().right;
 
       calculateNewMargin(fishInstance, index);
-
-      console.log(fishFarestPoint);
 
       if (fishFarestPoint > finishLineCoord) {
         clearInterval(gameInterval);
@@ -115,8 +136,9 @@ const playGame = () => {
     if (win) {
       winner = winners[0];
       fishByClass.style.display = "none";
+
       displayKing(winner);
-      displayPlayAgainButton();
+      displayPlayAgainButton(votedHat, votedGlasses);
     }
   }, 20);
 };
@@ -148,18 +170,27 @@ const handleLoadingAquarium = (interval) => {
   playGame();
 };
 
-const displayPlayAgainButton = (winner) => {
+const displayPlayAgainButton = (hat, glasses) => {
   const button = createPlayAgainButton();
   raceTrack.appendChild(button);
   button.addEventListener("click", () => {
     raceTrack.removeChild(button);
-    playAgain();
+    playAgain(hat, glasses);
   });
 };
 
-const playAgain = () => {
+const playAgain = (hat, glasses) => {
   Array.from(fish).forEach((f) => {
     f.style.left = `0%`;
+    console.log(f);
+    if (f.childNodes.length >= 4) {
+      if (hat) {
+        f.removeChild(hat);
+      }
+      if (glasses) {
+        f.removeChild(glasses);
+      }
+    }
   });
   win = false;
   //Remove the king display
