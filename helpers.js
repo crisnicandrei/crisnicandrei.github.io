@@ -13,12 +13,15 @@ const crownKing = (winnerFish) => {
   return winnerFish;
 };
 const remove = (element) => {
-  if (element.childNodes.length === 4) {
-    element.removeChild(element.childNodes[element.childNodes.length - 1]);
-  } else if (element.childNodes.length > 4) {
-    element.removeChild(element.childNodes[element.childNodes.length - 2]);
-    element.removeChild(element.childNodes[element.childNodes.length - 1]);
+  const voted = element.querySelector(".voted");
+  const hat = element.querySelector("#hat-equip");
+  const glasses = element.querySelector("#glasses-equip");
+  if (voted) {
+    element.removeChild(voted);
   }
+  if (hat) element.removeChild(hat);
+  if (glasses) element.removeChild(glasses);
+  console.log(voted);
 };
 const realignFish = (fish) => {
   fish.style.justifyContent = "center";
