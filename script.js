@@ -100,7 +100,6 @@ const playGame = () => {
     votedHat = document.getElementById("hat-equip").cloneNode(true);
     votedHat.classList.add("racing-hat");
   }
-  console.log(votedGlasses, votedHat);
 
   const gameInterval = setInterval(() => {
     Array.from(fish).forEach((fishInstance, index) => {
@@ -153,7 +152,7 @@ const calculateNewMargin = (fish, index) => {
       currentMargin = 0;
     }
   } else {
-    currentMargin += forward;
+    currentMargin += forward * 100;
   }
   if (index === 0) {
   }
@@ -182,7 +181,6 @@ const displayPlayAgainButton = (hat, glasses) => {
 const playAgain = (hat, glasses) => {
   Array.from(fish).forEach((f) => {
     f.style.left = `0%`;
-    console.log(f);
     if (f.childNodes.length >= 4) {
       if (hat) {
         f.removeChild(hat);
@@ -226,6 +224,18 @@ const displayKing = (winner) => {
 
   kingClone = crownKing(kingClone);
 
+  const glasses = kingClone.querySelector("#glasses-equip");
+  const hat = kingClone.querySelector("#hat-equip");
+
+  if (hat) {
+    hat.classList.remove(...hat.classList);
+    hat.classList.add("hat-king");
+  }
+  if (glasses) {
+    glasses.classList.remove(...glasses.classList);
+    glasses.classList.add("glasses-king");
+  }
+  console.log(glasses);
   //Get the image of the winner fish and the voted one
   if (notVoted) {
     const kingCloneImage = kingClone.childNodes[2].src;
@@ -234,7 +244,7 @@ const displayKing = (winner) => {
     if (votedImage && votedImage === kingCloneImage) {
       score += 40;
     } else {
-      score -= 10;
+      score -= 0;
     }
     setScoreInStore(score);
   }
