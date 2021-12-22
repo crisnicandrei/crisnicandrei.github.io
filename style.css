@@ -20,7 +20,7 @@ ul {
   transition: all 1s ease-in-out;
   overflow: scroll;
   border: 1px solid black;
-  z-index: 5;
+  z-index: 6;
 }
 .inventory {
   margin: 0;
@@ -35,7 +35,7 @@ ul {
   transition: all 1s ease-in-out;
   overflow: scroll;
   border: 1px solid black;
-  z-index: 4;
+  z-index: 5;
 }
 .list {
   margin: 0;
@@ -104,6 +104,18 @@ body {
   margin-top: 5%;
   margin-bottom: 7%;
   width: 15%;
+}
+.glasses-king {
+  position: absolute;
+  font-size: 4rem;
+  top: 75%;
+  left: 80%;
+}
+.hat-king {
+  position: absolute;
+  font-size: 5rem;
+  top: 70%;
+  left: 80%;
 }
 .racing-glasses {
   top: 30% !important;
@@ -362,6 +374,15 @@ body {
 }
 
 @media screen and (max-width: 800px) {
+  .hat-king {
+    font-size: 2rem;
+    top: 80%;
+  }
+  .glasses-king {
+    font-size: 2rem;
+    top: 85%;
+    left: 80%;
+  }
   .open {
     width: 100%;
     height: 60%;
@@ -504,6 +525,15 @@ body {
     top: 20%;
     right: 0%;
   }
+  .hat-king {
+    font-size: 2rem;
+    top: 80%;
+  }
+  .glasses-king {
+    font-size: 2rem;
+    top: 85%;
+    left: 100%;
+  }
 }
 @media (max-width: 1400px) and (orientation: landscape) {
   .open {
@@ -566,6 +596,15 @@ body {
     right: 0;
     left: unset;
   }
+  .hat-king {
+    font-size: 1rem;
+    top: 80%;
+  }
+  .glasses-king {
+    font-size: 1rem;
+    top: 85%;
+    left: 80%;
+  }
   .fish-section {
     width: 80%;
     display: flex;
@@ -592,12 +631,67 @@ body {
     left: 40%;
     bottom: 10%;
   }
+  .glasses-equip-fish1 {
+    position: absolute;
+    font-size: 1rem;
+    top: 30%;
+    right: 30%;
+  }
+
+  .hat-equip-fish2 {
+    position: absolute;
+    font-size: 1rem;
+    top: 25%;
+    transform: scaleX(-1);
+    right: 35%;
+  }
+
+  .glasses-equip-fish2 {
+    position: absolute;
+    font-size: 1rem;
+    top: 30%;
+    right: 40%;
+  }
+
+  .hat-equip-fish3 {
+    position: absolute;
+    font-size: 1rem;
+    top: 30%;
+    transform: scaleX(-1);
+    right: 30%;
+  }
+
+  .glasses-equip-fish3 {
+    position: absolute;
+    font-size: 1rem;
+    top: 35%;
+    right: 30%;
+  }
+
+  .hat-equip-fish4 {
+    position: absolute;
+    font-size: 1rem;
+    top: 20%;
+    transform: scaleX(-1);
+    right: 30%;
+  }
+
+  .glasses-equip-fish4 {
+    position: absolute;
+    font-size: 2rem;
+    top: 30%;
+    right: 20%;
+  }
+  .hat-equip-fish1 {
+    position: absolute;
+    font-size: 1rem;
+    top: 20%;
+    transform: scaleX(-1);
+    right: 30%;
+  }
 }
 
 @media (max-width: 900px) and (orientation: landscape) {
-  .store {
-    z-index: 5;
-  }
   .open {
     width: 100%;
     height: 100%;
@@ -617,5 +711,14 @@ body {
   .play-again {
     left: 30%;
     bottom: 10%;
+  }
+  .hat-king {
+    font-size: 1rem;
+    top: 80%;
+  }
+  .glasses-king {
+    font-size: 1rem;
+    top: 85%;
+    left: 80%;
   }
 }
