@@ -152,7 +152,7 @@ const calculateNewMargin = (fish, index) => {
       currentMargin = 0;
     }
   } else {
-    currentMargin += forward * 100;
+    currentMargin += forward;
   }
   if (index === 0) {
   }
