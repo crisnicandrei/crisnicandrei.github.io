@@ -4,13 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A fish race"></meta>
+    <meta name="description" content="A fish race" />
     <title>Document</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
     <div id="store" class="store"><span id="store-icon">🛒</span></div>
-    <div id="inventory" class="inventory"><span id="inventory-icon">🎒</span></div>
+    <div id="inventory" class="inventory">
+      <span id="inventory-icon">🎒</span>
+    </div>
 
     <div class="body">
       <div id="timer"></div>
@@ -77,44 +79,52 @@
       <button id="start-game">Start game</button>
     </div>
     <div class="voting-section">
-      <div class="fish-section">
+      <div class="fish-info">
         <span class="contestant-name">Bob</span>
 
-        <img
-          class="contestant-image"
-          id="fish1"
-          src="./assets/fish1.png"
-          alt="Voting first fish"
-        />
+        <div class="fish-section">
+          <img
+            class="contestant-image"
+            id="fish1"
+            src="./assets/fish1.png"
+            alt="Voting first fish"
+          />
+        </div>
       </div>
-      <div class="fish-section">
+      <div class="fish-info">
         <span class="contestant-name">Linda</span>
 
-        <img
-          class="contestant-image"
-          id="fish2"
-          src="./assets/fish2.png"
-          alt="Voting second fish"
-        />
+        <div class="fish-section">
+          <img
+            class="contestant-image"
+            id="fish2"
+            src="./assets/fish2.png"
+            alt="Voting second fish"
+          />
+        </div>
       </div>
-      <div class="fish-section">
+      <div class="fish-info">
         <span class="contestant-name">Mike</span>
-
-        <img
-          class="contestant-image"
-          id="fish3"
-          src="./assets/fish3.png"
-          alt="Voting third fish"
-        />
+        <div class="fish-section">
+          <img
+            class="contestant-image"
+            id="fish3"
+            src="./assets/fish3.png"
+            alt="Voting third fish"
+          />
+        </div>
       </div>
-      <div class="fish-section">
+      <div class="fish-info">
         <span class="contestant-name">Lily</span>
-        <img
-          class="contestant-image"
-          id="fish4"
-          src="./assets/fish4.png"
-          alt="Voting fourth fish"
-        />
+
+        <div class="fish-section">
+          <img
+            class="contestant-image"
+            id="fish4"
+            src="./assets/fish4.png"
+            alt="Voting fourth fish"
+          />
+        </div>
       </div>
       <p class="score-p"><b>Score: </b> <span id="score"></span></p>
     </div>

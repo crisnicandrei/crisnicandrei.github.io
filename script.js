@@ -35,7 +35,7 @@ let win = false;
 let winners = [];
 let winner;
 let score = 100;
-let notVoted = false;
+let notVoted = true;
 let shouldHaveListener = true;
 let date = new Date();
 let emptyInventory = {};
@@ -49,6 +49,8 @@ const selectedItems = {
 Object.entries(STORE).forEach((entry) => {
   emptyInventory[entry[1]["category"]] = [];
 });
+
+startGameButton.style.display = "none";
 
 const shoppingCart = getValueFromStore("shoppingCart")
   ? JSON.parse(getValueFromStore("shoppingCart"))
@@ -91,7 +93,10 @@ const playGame = () => {
   shouldHaveListener = false;
   let votedGlasses;
   let votedHat;
-  const votedDressedupFish = voted ? voted.childNodes[3].src : null;
+  console.log(voted.childNodes[1]);
+
+  const votedDressedupFish = voted ? voted.childNodes[1].src : null;
+  console.log(votedDressedupFish);
   if (document.getElementById("glasses-equip")) {
     votedGlasses = document.getElementById("glasses-equip").cloneNode(true);
     votedGlasses.classList.add("racing-glasses");
@@ -207,15 +212,18 @@ const playAgain = (hat, glasses) => {
   if (voted) {
     realignFish(voted);
     voted = undefined;
-    notVoted = false;
+    notVoted = true;
   }
   shouldHaveListener = true;
-  startGameButton.style.display = "block";
   infoBody.style.display = "block";
+  info.style.display = "block";
 };
 const displayKing = (winner) => {
   const heading = document.createElement("h2");
   const prize = document.createElement("h3");
+  const scoreResultText = document.createElement("h3");
+  scoreResultText.classList.add("score-result");
+
   heading.classList.add("king-header");
   prize.classList.add("king-header");
   prize.innerText = PRIZE;
@@ -235,15 +243,21 @@ const displayKing = (winner) => {
     glasses.classList.remove(...glasses.classList);
     glasses.classList.add("glasses-king");
   }
-  console.log(glasses);
   //Get the image of the winner fish and the voted one
-  if (notVoted) {
+  if (!notVoted) {
     const kingCloneImage = kingClone.childNodes[2].src;
     const votedImage = voted.childNodes[1].src;
 
     if (votedImage && votedImage === kingCloneImage) {
+      scoreResultText.innerText = `You have added 40 points to your total score by winning this round. Your previous score was ${score}, your new score is ${
+        score + 40
+      }`;
+
       score += 40;
     } else {
+      scoreResultText.innerText = `You have lost 10 points from your total score by losing this round. Your previous score was ${score}, your new score is ${
+        score - 10
+      }`;
       score -= 10;
     }
     setScoreInStore(score);
@@ -255,6 +269,7 @@ const displayKing = (winner) => {
   kingClone.insertBefore(prize, kingClone.firstChild);
 
   kingClone.insertBefore(heading, kingClone.firstChild);
+  kingClone.append(scoreResultText);
 
   kingClone.style = "none";
   raceTrack.appendChild(kingClone);
@@ -268,8 +283,10 @@ Array.from(votingSection).forEach((section) => {
       }
       section.append(votedText);
       section.style.justifyContent = "space-between";
+      startGameButton.style.display = "block";
+      info.style.display = "none";
       voted = section;
-      notVoted = true;
+      notVoted = false;
       equipClothing(selectedItems["hats"], selectedItems["glasses"], voted);
     }
   });
@@ -278,12 +295,8 @@ Array.from(votingSection).forEach((section) => {
 startGameButton.addEventListener("click", () => {
   countDown(counter);
 });
-infoBody.addEventListener("click", () => {
-  displayHelp = !displayHelp;
-  let text = displayHelp ? INSTRUCTION : NEEDHELP;
 
-  info.innerText = text;
-});
+info.innerText = INSTRUCTION;
 
 const storeItems = document.createElement("ul");
 storeItems.classList.add("list");
@@ -293,7 +306,7 @@ STORE.forEach(({ emoji, price, name, category }) => {
   li.id = category;
   const titleEl = document.createElement("h3");
   titleEl.classList.add("list-heading");
-  titleEl.innerText = `Name: ${name}`;
+  titleEl.innerText = `${name}`;
 
   const info = document.createElement("div");
   info.classList.add("info");
@@ -400,7 +413,7 @@ window.addEventListener("load", () => {
 });
 
 const equipClothing = (hat, glasses, votedFish) => {
-  const id = votedFish.childNodes[3].id;
+  const id = votedFish.childNodes[1].id;
 
   if (hat) {
     let hatElement = document.getElementById("hat-equip");
@@ -423,9 +436,9 @@ const handleEquipClothing = () =>
     item.addEventListener("click", () => {
       const { id, innerText } = item;
 
-      if (innerText.indexOf("equipped") !== -1) return;
+      if (innerText.indexOf("✅") !== -1) return;
 
-      /*Check to see if an item has been previously selected, if yes we remove the "equipped" text 
+      /*Check to see if an item has been previously selected, if yes we remove the "✅" text 
     then continue with appending the text to the clicked one :) */
 
       if (selectedItems[`${id}Element`]) {
@@ -435,7 +448,7 @@ const handleEquipClothing = () =>
 
       selectedItems[id] = innerText;
       selectedItems[`${id}Element`] = item;
-      selectedItems[`${id}Element`].innerText = `${innerText} equipped`;
+      selectedItems[`${id}Element`].innerText = `${innerText} ✅`;
 
       equipClothing(selectedItems["hats"], selectedItems["glasses"], voted);
     });
