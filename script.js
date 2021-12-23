@@ -244,7 +244,7 @@ const displayKing = (winner) => {
     if (votedImage && votedImage === kingCloneImage) {
       score += 40;
     } else {
-      score -= 0;
+      score -= 10;
     }
     setScoreInStore(score);
   }
