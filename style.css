@@ -7,6 +7,12 @@ ul {
   margin: 0;
 }
 
+.score-result {
+  color: white;
+  background-color: black;
+  padding: 0.5rem;
+}
+
 .store {
   margin: 0;
   width: 5rem;
@@ -37,6 +43,7 @@ ul {
   border: 1px solid black;
   z-index: 5;
 }
+
 .list {
   margin: 0;
 }
@@ -108,14 +115,22 @@ body {
 .glasses-king {
   position: absolute;
   font-size: 4rem;
-  top: 75%;
+  top: 65%;
   left: 80%;
 }
 .hat-king {
   position: absolute;
   font-size: 5rem;
-  top: 70%;
+  top: 60%;
   left: 80%;
+}
+#hats {
+  text-align: left;
+  margin-left: 1rem;
+}
+#glasses {
+  text-align: left;
+  margin-left: 1rem;
 }
 .racing-glasses {
   top: 30% !important;
@@ -224,20 +239,22 @@ body {
 }
 .fish-section {
   position: relative;
-  width: 15%;
+  width: 100%;
   background-color: cornflowerblue;
   border: 1px solid black;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
-  height: 100%;
+  height: 80%;
 }
 .contestant-image {
   width: 100%;
   cursor: pointer;
+  height: 70%;
 }
 .score-p {
   font-size: 2rem;
+  text-align: center;
 }
 .voted {
   font-size: 2rem;
@@ -258,85 +275,67 @@ body {
 .hat-equip-fish1 {
   position: absolute;
   font-size: 3rem;
-  top: 10%;
+  top: 5%;
   transform: scaleX(-1);
   right: 5%;
 }
-.shirt-equip-fish1 {
-  position: absolute;
-  font-size: 8rem;
-  top: 0%;
-  transform: rotate(90deg);
-  right: 20%;
-}
+
 .glasses-equip-fish1 {
   position: absolute;
   font-size: 2rem;
-  top: 35%;
+  top: 25%;
   right: 5%;
 }
 
 .hat-equip-fish2 {
   position: absolute;
   font-size: 3rem;
-  top: 15%;
+  top: 5%;
   transform: scaleX(-1);
   right: 25%;
 }
-.shirt-equip-fish2 {
-  position: absolute;
-  font-size: 5rem;
-  top: 20%;
-  transform: rotate(90deg);
-  right: 40%;
-}
+
 .glasses-equip-fish2 {
   position: absolute;
   font-size: 2rem;
-  top: 40%;
+  top: 20%;
   right: 20%;
 }
 
 .hat-equip-fish3 {
   position: absolute;
   font-size: 3rem;
-  top: 20%;
+  top: 0%;
   transform: scaleX(-1);
   right: 5%;
 }
-.shirt-equip-fish3 {
-  position: absolute;
-  font-size: 5rem;
-  top: 20%;
-  transform: rotate(90deg);
-  right: 20%;
-}
+
 .glasses-equip-fish3 {
   position: absolute;
   font-size: 2rem;
-  top: 40%;
+  top: 20%;
   right: 5%;
 }
 
 .hat-equip-fish4 {
   position: absolute;
   font-size: 3rem;
-  top: 20%;
+  top: 0%;
   transform: scaleX(-1);
   right: 5%;
 }
-.shirt-equip-fish4 {
-  position: absolute;
-  font-size: 5rem;
-  top: 20%;
-  transform: rotate(90deg);
-  right: 20%;
-}
+
 .glasses-equip-fish4 {
   position: absolute;
   font-size: 2rem;
-  top: 40%;
+  top: 20%;
   right: 5%;
+}
+.fish-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 17%;
 }
 
 /* Add classes for breakpoints so i do not repeat the select media query */
@@ -376,11 +375,11 @@ body {
 @media screen and (max-width: 800px) {
   .hat-king {
     font-size: 2rem;
-    top: 80%;
+    top: 60%;
   }
   .glasses-king {
     font-size: 2rem;
-    top: 85%;
+    top: 65%;
     left: 80%;
   }
   .open {
@@ -402,6 +401,12 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .score-result {
+    width: 15rem;
+  }
+  .score-p {
+    font-size: 1rem;
+  }
   .open {
     height: 100%;
   }
@@ -438,6 +443,7 @@ body {
   .crown {
     left: 6rem;
     bottom: 4rem;
+    top: 50%;
   }
   .voting-section {
     left: 5%;
@@ -445,93 +451,69 @@ body {
   .hat-equip-fish1 {
     position: absolute;
     font-size: 1rem;
-    top: 20%;
+    top: 0%;
     transform: scaleX(-1);
     right: 5%;
   }
-  .shirt-equip-fish1 {
-    position: absolute;
-    font-size: 2rem;
-    top: 25%;
-    transform: rotate(90deg);
-    right: 20%;
-  }
+
   .glasses-equip-fish1 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 10%;
     right: 0%;
   }
 
   .hat-equip-fish2 {
     position: absolute;
     font-size: 1rem;
-    top: 25%;
+    top: 0%;
     transform: scaleX(-1);
     right: 15%;
   }
-  .shirt-equip-fish2 {
-    position: absolute;
-    font-size: 2rem;
-    top: 30%;
-    transform: rotate(90deg);
-    right: 50%;
-  }
+
   .glasses-equip-fish2 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 10%;
     right: 20%;
   }
 
   .hat-equip-fish3 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 0%;
     transform: scaleX(-1);
     right: 3%;
   }
-  .shirt-equip-fish3 {
-    position: absolute;
-    font-size: 1.5rem;
-    top: 35%;
-    transform: rotate(90deg);
-    right: 30%;
-  }
+
   .glasses-equip-fish3 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 10%;
     right: 5%;
   }
 
   .hat-equip-fish4 {
     position: absolute;
     font-size: 1rem;
-    top: 20%;
+    top: 0%;
     transform: scaleX(-1);
     right: 5%;
   }
-  .shirt-equip-fish4 {
-    position: absolute;
-    font-size: 2rem;
-    top: 20%;
-    transform: rotate(90deg);
-    right: 20%;
-  }
+
   .glasses-equip-fish4 {
     position: absolute;
     font-size: 2rem;
-    top: 20%;
+    top: 5%;
     right: 0%;
   }
   .hat-king {
     font-size: 2rem;
-    top: 80%;
+    top: 55%;
   }
   .glasses-king {
     font-size: 2rem;
-    top: 85%;
+    top: 60%;
     left: 100%;
   }
 }
@@ -598,11 +580,11 @@ body {
   }
   .hat-king {
     font-size: 1rem;
-    top: 80%;
+    top: 47%;
   }
   .glasses-king {
     font-size: 1rem;
-    top: 85%;
+    top: 48%;
     left: 80%;
   }
   .fish-section {
@@ -612,6 +594,7 @@ body {
     flex-direction: column;
     align-items: center;
     margin-top: 5%;
+    height: 6rem;
   }
   .contestant-name {
     margin-bottom: 5%;
@@ -634,14 +617,14 @@ body {
   .glasses-equip-fish1 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 0%;
     right: 30%;
   }
 
   .hat-equip-fish2 {
     position: absolute;
     font-size: 1rem;
-    top: 25%;
+    top: 0%;
     transform: scaleX(-1);
     right: 35%;
   }
@@ -649,14 +632,14 @@ body {
   .glasses-equip-fish2 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 0%;
     right: 40%;
   }
 
   .hat-equip-fish3 {
     position: absolute;
     font-size: 1rem;
-    top: 30%;
+    top: 0%;
     transform: scaleX(-1);
     right: 30%;
   }
@@ -664,14 +647,14 @@ body {
   .glasses-equip-fish3 {
     position: absolute;
     font-size: 1rem;
-    top: 35%;
+    top: 0%;
     right: 30%;
   }
 
   .hat-equip-fish4 {
     position: absolute;
     font-size: 1rem;
-    top: 20%;
+    top: 0%;
     transform: scaleX(-1);
     right: 30%;
   }
@@ -679,15 +662,18 @@ body {
   .glasses-equip-fish4 {
     position: absolute;
     font-size: 2rem;
-    top: 30%;
+    top: 0%;
     right: 20%;
   }
   .hat-equip-fish1 {
     position: absolute;
     font-size: 1rem;
-    top: 20%;
+    top: -10%;
     transform: scaleX(-1);
     right: 30%;
+  }
+  .fish-info {
+    width: 60%;
   }
 }
 
@@ -714,11 +700,20 @@ body {
   }
   .hat-king {
     font-size: 1rem;
-    top: 80%;
+    top: 42%;
   }
   .glasses-king {
     font-size: 1rem;
-    top: 85%;
+    top: 43%;
     left: 80%;
+  }
+  .fish-section {
+    height: 4rem;
+  }
+  .score-result {
+    position: relative;
+    right: 100%;
+    width: 20rem;
+    left: 15rem;
   }
 }
