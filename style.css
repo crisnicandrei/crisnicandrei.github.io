@@ -24,7 +24,7 @@ ul {
   text-align: center;
   font-size: 4rem;
   transition: all 1s ease-in-out;
-  overflow: scroll;
+  overflow: hidden;
   border: 1px solid black;
   z-index: 6;
 }
@@ -39,7 +39,7 @@ ul {
   text-align: center;
   font-size: 4rem;
   transition: all 1s ease-in-out;
-  overflow: scroll;
+  overflow: hidden;
   border: 1px solid black;
   z-index: 5;
 }
@@ -73,6 +73,7 @@ ul {
   width: 20%;
   height: 70%;
   transition: all 1s ease-in-out;
+  overflow: scroll;
 }
 
 #timer {
@@ -197,7 +198,7 @@ body {
 .king-header {
   font-size: 5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(77, 24, 22)
+  color: rgb(77, 24, 22);
 }
 
 .fish-img {
