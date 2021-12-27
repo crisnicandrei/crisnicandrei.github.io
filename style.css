@@ -524,8 +524,9 @@ body {
     width: 15rem;
     text-align: center;
   }
-.fish-section {
-  width: 100%;
+  .fish-section {
+    width: 100%;
+  }
 }
 @media (max-width: 1400px) and (orientation: landscape) {
   .open {
