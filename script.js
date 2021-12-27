@@ -225,7 +225,11 @@ const displayKing = (winner) => {
   scoreResultText.classList.add("score-result");
 
   heading.classList.add("king-header");
+  heading.classList.add("winner");
+
   prize.classList.add("king-header");
+  prize.classList.add("king-header-medal");
+
   prize.innerText = PRIZE;
   heading.innerText = WINNER;
   let kingClone = winner.cloneNode(true);

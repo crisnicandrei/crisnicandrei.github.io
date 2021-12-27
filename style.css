@@ -197,7 +197,7 @@ body {
 .king-header {
   font-size: 5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: gold;
+  color: rgb(77, 24, 22)
 }
 
 .fish-img {
@@ -515,6 +515,13 @@ body {
     font-size: 2rem;
     top: 60%;
     left: 100%;
+  }
+  .king {
+    left: 30%;
+  }
+  .king-header-medal {
+    width: 15rem;
+    text-align: center;
   }
 }
 @media (max-width: 1400px) and (orientation: landscape) {
