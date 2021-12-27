@@ -240,7 +240,7 @@ body {
 }
 .fish-section {
   position: relative;
-  width: 100%;
+  width: 80%;
   background-color: cornflowerblue;
   border: 1px solid black;
   display: flex;
@@ -524,6 +524,8 @@ body {
     width: 15rem;
     text-align: center;
   }
+.fish-section {
+  width: 100%;
 }
 @media (max-width: 1400px) and (orientation: landscape) {
   .open {
