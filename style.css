@@ -6,6 +6,9 @@ ul {
   list-style-type: none;
   margin: 0;
 }
+h5 {
+  margin: 1.5rem 0;
+}
 
 .score-result {
   color: white;
@@ -43,14 +46,19 @@ ul {
   border: 1px solid black;
   z-index: 5;
 }
+#store-icon,
+#inventory-icon {
+  cursor: pointer;
+}
 
 .list {
   margin: 0;
 }
 .list-item {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-family: Arial, Helvetica, sans-serif;
   border-bottom: 1px solid #77747d;
   background-color: #a37e86;
@@ -83,7 +91,6 @@ ul {
 .race-track {
   display: none;
   width: 60vw;
-  height: 60vh;
 }
 
 .timer-image {
@@ -240,7 +247,7 @@ body {
 }
 .fish-section {
   position: relative;
-  width: 80%;
+  width: 60%;
   background-color: cornflowerblue;
   border: 1px solid black;
   display: flex;
@@ -271,6 +278,7 @@ body {
   text-align: center;
   display: block;
   font-size: 1.5rem;
+  width: 60%;
 }
 
 .hat-equip-fish1 {
@@ -340,10 +348,21 @@ body {
 }
 
 /* Add classes for breakpoints so i do not repeat the select media query */
+@media screen and (min-width: 1600px) {
+  .race-track {
+    height: 65vh;
+  }
+}
 
 @media screen and (max-width: 1400px) {
   .fish {
     margin-bottom: 12%;
+  }
+  .race-track {
+    height: 60vh;
+  }
+  .fish-info {
+    width: 30%;
   }
 }
 
@@ -369,7 +388,7 @@ body {
     left: 40%;
   }
   .open {
-    width: 50%;
+    width: 30%;
   }
 }
 
@@ -402,6 +421,10 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  .fish-info {
+    width: 20%;
+    margin: 0.5rem;
+  }
   .score-result {
     width: 15rem;
   }

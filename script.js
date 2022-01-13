@@ -308,7 +308,7 @@ STORE.forEach(({ emoji, price, name, category }) => {
   const li = document.createElement("li");
   li.classList.add("list-item");
   li.id = category;
-  const titleEl = document.createElement("h3");
+  const titleEl = document.createElement("h4");
   titleEl.classList.add("list-heading");
   titleEl.innerText = `${name}`;
 
@@ -379,7 +379,7 @@ inventoryIcon.addEventListener("click", () => {
 });
 Object.keys(shoppingCart).forEach((key) => {
   const container = document.createElement("div");
-  const header = document.createElement("h3");
+  const header = document.createElement("h5");
   const inventoryList = document.createElement("ul");
 
   inventoryList.id = `inventory-list-${key}`;
