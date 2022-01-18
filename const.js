@@ -4,6 +4,7 @@ const timerValues = {
   3: "./assets/one.png",
   4: "./assets/go.png",
 };
+const CHECKMARKCLASS = "checkmark";
 const PLAYAGAIN = "Click here to play again";
 const WINNER = "WINNER";
 const PRIZE = `🥇🏆`;

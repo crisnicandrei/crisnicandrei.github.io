@@ -93,10 +93,8 @@ const playGame = () => {
   shouldHaveListener = false;
   let votedGlasses;
   let votedHat;
-  console.log(voted.childNodes[1]);
 
   const votedDressedupFish = voted ? voted.childNodes[1].src : null;
-  console.log(votedDressedupFish);
   if (document.getElementById("glasses-equip")) {
     votedGlasses = document.getElementById("glasses-equip").cloneNode(true);
     votedGlasses.classList.add("racing-glasses");
@@ -350,6 +348,7 @@ storeIcon.addEventListener("click", () => {
 
         if (!shoppingCart[id].includes(itemToBuy) && score >= priceItemToBuy) {
           shoppingCart[id].push(itemToBuy);
+          hideOrDisplayHeadings();
           score = score - priceItemToBuy;
           setScoreInStore(score);
           window.localStorage.setItem(
@@ -372,14 +371,22 @@ const setScoreInStore = (value) => {
 
 inventoryIcon.addEventListener("click", () => {
   if (inventory.classList.contains("open")) {
+    document.getElementById("hats").style.display = "none";
+    document.getElementById("glasses").style.display = "none";
+
     inventory.classList.remove("open");
   } else {
+    document.getElementById("hats").style.display = "block";
+    document.getElementById("glasses").style.display = "block";
+
+    hideOrDisplayHeadings();
     inventory.classList.add("open");
   }
 });
 Object.keys(shoppingCart).forEach((key) => {
   const container = document.createElement("div");
   const header = document.createElement("h5");
+  header.id = `${key}-heading`;
   const inventoryList = document.createElement("ul");
 
   inventoryList.id = `inventory-list-${key}`;
@@ -452,8 +459,20 @@ const handleEquipClothing = () =>
 
       selectedItems[id] = innerText;
       selectedItems[`${id}Element`] = item;
-      selectedItems[`${id}Element`].innerText = `${innerText} ✅`;
+      selectedItems[
+        `${id}Element`
+      ].innerHTML = `${innerText} <span class=${CHECKMARKCLASS}>✅</span>`;
 
       equipClothing(selectedItems["hats"], selectedItems["glasses"], voted);
     });
   });
+
+function hideOrDisplayHeadings() {
+  Object.keys(shoppingCart).forEach((key) => {
+    if (!shoppingCart[key].length) {
+      document.getElementById(`${key}-heading`).style.display = "none";
+    } else {
+      document.getElementById(`${key}-heading`).style.display = "block";
+    }
+  });
+}
