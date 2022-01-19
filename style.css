@@ -446,6 +446,18 @@ body {
 }
 
 @media screen and (max-width: 600px) {
+  h5 {
+    font-size: 2.5rem;
+  }
+  ul {
+    padding-left: 0;
+  }
+  .list-heading {
+    font-size: 1.5rem;
+  }
+  .price {
+    font-size: 1rem;
+  }
   .fish-info {
     width: 20%;
     margin: 0.5rem;
@@ -456,16 +468,29 @@ body {
   .score-p {
     font-size: 1rem;
   }
-  .open {
-    height: 100%;
+  .store {
+    font-size: 0;
   }
+
+  /* .inventory {
+    font-size: 0;
+  } */
+
   .inventory.open,
   .store.open {
-    width: 100%;
+    width: 40%;
+    height: 40%;
   }
-  .inventory-list-hats,
-  .inventort-list-glasses {
+  #store-icon {
+    font-size: 2rem;
+  }
+  #inventory-list-hats,
+  #inventory-list-glasses {
     padding-left: 0;
+    font-size: 2.5rem;
+  }
+  .checkmark {
+    font-size: 1.5rem;
   }
 
   .fish {
@@ -583,6 +608,10 @@ body {
   }
   .fish-section {
     width: 100%;
+  }
+  .emoji {
+    font-size: 1.8rem;
+    padding-top: 0.5rem;
   }
 }
 @media (max-width: 1400px) and (orientation: landscape) {
